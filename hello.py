@@ -18,6 +18,7 @@
 import sys
 import docx2txt
 import time
+import os
 
 
 
@@ -32,13 +33,45 @@ def initMe(initialFileName, newFileName):
   print("init done");
   return originalContent
 
+def outputFile(words, tags):
+  newFileName = "./jizz"
+  newFileObject = open(newFileName, "w")
+  size = len(words)
+  string = ""
+  for i in range(size):
+     word, tag = words[i], tags[i]
+     string += str(word) + "---" + str(tag) + " \n"
+  newFileObject.write(string)
+
+# tag validator:
+def isValidTag(tag): 
+  return tag != "." 
+
 # Gather our code in a main() function
 def main():
   # note that the input file has to be in the same project directory
   initialFileName = sys.argv[1]
   newFileName = "workspace_" + initialFileName[:-5] + ".txt"
   contents = initMe(initialFileName, newFileName)
-  print(contents)
+  splitContents = contents.split(" ")
+  size = len(splitContents)
+  words = [size]
+  tags = [size]
+  print("XXX ", )
+  for i in range(size):
+    term = splitContents[i]
+    if "_" in term:   
+      splitTerm = term.split("_")
+      word, tag  = splitTerm[0], splitTerm[1]
+      # add in a check the tag should be valid
+      if(isValidTag(tag)):
+        print("iteration # %s with the word %s gives the word %s and has the tag %s" %(i, term, word, tag))
+        words.append(word)
+        tags.append(tag)
+  outputFile(words, tags)
+  print(words)
+  print(tags)
+  # print(contents)
   # print(workingFileObject.read())
 
 # Standard boilerplate to call the main() function to begin
