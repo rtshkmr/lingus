@@ -21,37 +21,25 @@ import time
 
 
 
-# creates a copy of the input .docx file into a .txt file and returns contents as a single string
-def initMe(initalFileName):
+# creates a copy of the input .docx file into a .txt file and returns contents as an opened FileObject
+def initMe(initialFileName, newFileName):
   # create a new file to work on:
-  newFileName = initalFileName[:-5] + ".txt"
-  originalContent = docx2txt.process(initalFileName)
+  
+  originalContent = docx2txt.process(initialFileName)
   newFileObject = open(newFileName, "w")
   # copy over to the new file name:
   newFileObject.write(originalContent)
   print("init done");
-  time.sleep(5)
-  newFileObject.close();
+  return originalContent
 
 # Gather our code in a main() function
 def main():
-  fileName = sys.argv[1]
-  # fileName = "C:\Users\mkrit\OneDrive - National University of Singapore\a&r\lingus\temp\PoSTrialText.docx"
-  initMe(fileName)
-  time.sleep(5)
-
-
-    # read a file:
-
-    # using docx2txt
-    
-
-    # print (type(intermediateFile))
-    # fileopen functions:
-    # f = open("D:\\myfiles\welcome.txt", "r")
-    # fileObject = open(fileName, "r")
-    # print(fileObject.read())
-
+  # note that the input file has to be in the same project directory
+  initialFileName = sys.argv[1]
+  newFileName = "workspace_" + initialFileName[:-5] + ".txt"
+  contents = initMe(initialFileName, newFileName)
+  print(contents)
+  # print(workingFileObject.read())
 
 # Standard boilerplate to call the main() function to begin
 # the program.
