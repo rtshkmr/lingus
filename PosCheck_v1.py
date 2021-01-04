@@ -16,6 +16,9 @@ possible issues to face:
 
 
 
+tokens = nltk.word_tokenize(workspaceContent)
+return tokens
+
 
 Written by: Alyssa Nah Xiao Ting and Ritesh Kumar
  ============================================== """
@@ -23,12 +26,11 @@ import sys
 import docx2txt
 import os, signal
 import logging
+import nltk
+import spacy
 
-# class PoSTagging:
 
-    # def __init__(self):
-    #     return
-
+sp = spacy.load('en_core_web_sm')
 
 logger = logging.getLogger("logger")
 logger.setLevel(logging.DEBUG)
@@ -78,8 +80,10 @@ def main():
     sourceFileName = sys.argv[1]
     workspaceFileName = "workspace_" + sourceFileName[:-5] + ".txt"
     contents = init(sourceFileName, workspaceFileName)
-    finalWords, finalTags = checkPOS(contents)
-    writeToOutputFile(finalWords, finalTags)
+    
+    print(contents)
+    # finalWords, finalTags = checkPOS(contents)
+    # writeToOutputFile(finalWords, finalTags)
 
 
 # returns contents from the workspace if workspace aldy exists, else copies from source to new workspace:
