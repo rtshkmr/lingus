@@ -7,14 +7,34 @@ as a user so wishes.
 Next versions will cross check existing POS tagging libs
 and ask the human only if there are discrepancies.
 
+possible issues to face: 
+1. the workspace file is overwritten to reflect that most 
+   status. i.e. the unchecked terms. but the overwriting
+   does not preserve the original whitespace in the source
+   document. (actually we never ever preserve the whitespace
+   from the source document)
+
+
+
+
 Written by: Alyssa Nah Xiao Ting and Ritesh Kumar
- =============================================="""
+ ============================================== """
 import sys
 import docx2txt
 import os, signal
 import logging
 
-OUTPUT_FILE_NAME = "./jizz"
+# class PoSTagging:
+
+    # def __init__(self):
+    #     return
+
+
+logger = logging.getLogger("logger")
+logger.setLevel(logging.DEBUG)
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+
+OUTPUT_FILE_NAME = "./output"
 
 PosDictionary = {}
 PosDictionary["1"] = "CC"
@@ -52,14 +72,7 @@ PosDictionary["32"] = "VBZ"
 PosDictionary["33"] = "WDT"
 PosDictionary["34"] = "WP"
 PosDictionary["35"] = "WP$"
-PosDictionary["36"] = "WRB"
-
-
-logger = logging.getLogger("logger")
-logger.setLevel(logging.DEBUG)
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
-
-
+PosDictionary["36"] = "WRB"    
 def main():
     # note that the input file has to be in the same project directory
     sourceFileName = sys.argv[1]
@@ -116,7 +129,7 @@ def cleanup(checkedWords, checkedTags, uncheckedWords, uncheckedTags):
     writeToOutputFile(checkedWords, checkedTags)
     remainingContent = ""
     for i in range(len(uncheckedWords)):
-        remainingContent += uncheckedWords[i] + "_" + uncheckedTags[i] + " "
+        remainingContent += str(uncheckedWords[i]) + "_" + str(uncheckedTags[i]) + " "
     writeToWorkspace(
         remainingContent, workspaceFileName="workspace_PoSTrialText.txt"
     )  # TODO: make everythign into a class so that can set the filenames as a class level variable after init
@@ -133,11 +146,11 @@ def writeToWorkspace(content, workspaceFileName):
     return content
 
 
-# appends to output file
+# appends to non-existing / pre-existing output file
 def writeToOutputFile(words, tags):
     outputFile = open(OUTPUT_FILE_NAME, "a+")
     size = len(words)
-    string = ""
+    string = "\n===================== STARTING LINE =============================\n"
     for i in range(size):
         word, tag = words[i], tags[i]
         entry = "[" + str(word) + "_" + str(tag) + "]"
@@ -181,5 +194,9 @@ def validateTag(tag):
     return tag in PosDictionary.values()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     main()
+
+# if __name__ == "__main__":
+#     print("execut ion happens")
+#     PoSTagging().main()
