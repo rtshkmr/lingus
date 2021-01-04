@@ -14,12 +14,6 @@ possible issues to face:
    document. (actually we never ever preserve the whitespace
    from the source document)
 
-
-
-tokens = nltk.word_tokenize(workspaceContent)
-return tokens
-
-
 Written by: Alyssa Nah Xiao Ting and Ritesh Kumar
  ============================================== """
 import sys
@@ -28,12 +22,10 @@ import os, signal
 import logging
 import nltk
 import spacy
-
-
-sp = spacy.load('en_core_web_sm')
+# sp = spacy.load('en_core_web_sm')
 
 logger = logging.getLogger("logger")
-logger.setLevel(logging.DEBUG)
+# logger.setLevel(logging.DEBUG)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
 OUTPUT_FILE_NAME = "./output"
@@ -82,8 +74,61 @@ def main():
     contents = init(sourceFileName, workspaceFileName)
     
     print(contents)
-    # finalWords, finalTags = checkPOS(contents)
-    # writeToOutputFile(finalWords, finalTags)
+    finalWords, finalTags = checkPOS(contents)
+    writeToOutputFile(finalWords, finalTags)
+
+
+""" 
+words,tags. tags = {original: [], nltk: [t1, t2,...]}
+ term: <wordY>_<tag%>
+nltkOutput: [(<word>_<tag>), etc..]  ===> filter based on valid tag.  
+filteredArr: <wordX>_<tag#>
+<wordX> == <wordY>
+original: apple_NN, kill_VB
+nltk: apple_VB, kill_NN
+nltk_tags: VB, NN  <==== this is the output
+* we are not checking score, just checking if pointing to the same word *
+NN --> apple
+VB --> apple
+
+originalTermsArr / nltkArray = [word_tag,...]
+
+nltk tagging --> filter based on valid ---> newTermsArr = [word_tag]
+
+assert: 
+1. the sizes the same
+2. for each element in the  two arrays, the <word> is the same 
+ """
+# returns an array containing NLTK tags
+def generateNLTKtags(originalWords):
+    # just take out the tags (dont want words) + validate the tags (check againts dictionary)
+    # # nltkArrSize = len(accumulatedText)
+    # ogWordsArrSize = len(originalWords)
+    # tokens = nltk.word_tokenize(originalWords)
+    nltkOutput = nltk.pos_tag(originalWords) #nltkOutput: [(<word>_<tag>), etc..] 
+    nltkTags =[]
+    for term in nltkOutput:
+        # print(i) #("test", 'NN')
+        nltkTags.append(term[1])
+
+    # Perfoming checks only
+    # # if nltkArrSize == ogWordsArrSize:
+    #     for i in range(nltkArrSize): # index 1 etc
+    #         # NLTK
+    #         nltkTerm = nltkOutput[i]  #<word>_<Tag>
+    #         splitTerm = nltkTerm.split("_")
+    #         nltkWord, nltkTag = splitTerm #<word>
+    #         nltkTags.append(nltkTag)
+    #         if validateTag(nltkTag):
+    #             # Orignal term 
+    #             targetWord = originalWords[i]  #<word>
+    #             if targetWord != nltkWord:
+    #                 logger.debug("Incorrect matching words")
+    #                 return None
+
+    # just return tags from nltkOutput
+    return nltkTags
+
 
 
 # returns contents from the workspace if workspace aldy exists, else copies from source to new workspace:
@@ -109,21 +154,29 @@ def init(sourceFileName, workspaceFileName):
 def checkPOS(contents):
     splitContents = contents.split(" ")
     size = len(splitContents)
-    words, tags = [size], [size]
+    words, tags = [], {"original": [], "nltk":[]}
     for i in range(size):  # iters thru term where term is <word>_<tag>
         term = splitContents[i]  # word_tag
         if "_" in term:
             splitTerm = term.split("_")
-            word, tag = splitTerm[0], splitTerm[1]
+            word, originalTag = splitTerm[0] , splitTerm[1]
             # add in a check the tag should be valid
-            if validateTag(tag):
+            if validateTag(originalTag):
                 logger.debug(
                     "iteration #%s with the term %s gives the word %s and has the tag %s"
-                    % (i, term, word, tag)
+                    % (i, term, word, originalTag)
                 )
+                #separated words and tags into different arrays
                 words.append(word)
-                tags.append(tag)
-    return promptHuman(words, tags)
+                tags["original"].append(originalTag)
+
+    #Array of NLTK tags 
+    tags["nltk"] = generateNLTKtags(words)
+    original, nltk = tags["original"] , tags["nltk"] 
+    print(f"SEE HERE: \n\n \t =========== stanford tags: ============= \n {original} \n\n \t =========== nltk tags: ============= \n {nltk}")
+    # return promptHuman(words, tags) 
+    # TODO: uncomment this later after modifying promptHuman where tags is a dict, the current thing shall be a stub for now
+    return (words, tags["original"])
 
 
 # cleans up the program upon a signal interruption by
@@ -169,7 +222,7 @@ def writeToOutputFile(words, tags):
 #   2. Maybe do some control flow e.g. step 1 user chooses noun, then step 2: what kinda noun, proper?...
 def promptHuman(initialWords, initialTags):
     size = len(initialWords)
-    checkedWords, checkedTags = [size], [size]
+    checkedWords, checkedTags = [], []
     for i in range(size):
         newTag = initialTags[i]  # first initial tag from array
         isValidTag = False
