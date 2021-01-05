@@ -29,7 +29,9 @@ logger = logging.getLogger("logger")
 # logger.setLevel(logging.DEBUG)
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
+# define constants here
 OUTPUT_FILE_NAME = "./output"
+THRESHOLD = 1
 
 
 def main():
@@ -41,36 +43,13 @@ def main():
     writeToOutputFile(finalWords, finalTags)
     print(endingGreeting)
 
-
-""" 
-words,tags. tags = {original: [], nltk: [t1, t2,...]}
- term: <wordY>_<tag%>
-nltkOutput: [(<word>_<tag>), etc..]  ===> filter based on valid tag.  
-filteredArr: <wordX>_<tag#>
-<wordX> == <wordY>
-original: apple_NN, kill_VB
-nltk: apple_VB, kill_NN
-nltk_tags: VB, NN  <==== this is the output
-* we are not checking score, just checking if pointing to the same word *
-NN --> apple
-VB --> apple
-
-originalTermsArr / nltkArray = [word_tag,...]
-
-nltk tagging --> filter based on valid ---> newTermsArr = [word_tag]
-
-assert: 
-1. the sizes the same
-2. for each element in the  two arrays, the <word> is the same 
- """
 # returns an array containing NLTK tags
-def generateNLTKtags(originalWords):
-    nltkOutput = nltk.pos_tag(originalWords)  # nltkOutput: [(<word>_<tag>), etc..]
+def generateNLTKtags(words):
+    nltkOutput = nltk.pos_tag(words)
     nltkTags = []
     for term in nltkOutput:
-        nltkTags.append(term[1])  # nb: nltk output is an array of tuples that's why
+        nltkTags.append(term[1])  # nb: nltk output is an array of tuples that's why nltkOutput: [(<word>_<tag>), etc..]
     return nltkTags
-
 
 # returns contents from the workspace if workspace aldy exists, else copies from source to new workspace:
 def init(sourceFileName, workspaceFileName):
@@ -91,9 +70,13 @@ def init(sourceFileName, workspaceFileName):
     return workspaceContent
 
 
-# preprocesses the single string of contents and returns the following list [words, tags]
-# where words is a list of words
-# tags is a dictionary that maps a tagger (e.g. stanford, nltk...) to a list of tags associated to the words list
+# preprocesses the single string of contents and returns the following list: [words, tags]
+#   where words is a list of words [w1, w2, w3,...]
+#   tags is a dictionary that maps a tagger (e.g. stanford, nltk...) to a list of tags associated to the words list
+#       e.g. tags = {
+#                   "original" : [t1, t2, t3,...],
+#                   ...
+#                   }
 def preprocessTerms(contents):
     splitContents = contents.split(" ")
     size = len(splitContents)
@@ -118,7 +101,7 @@ def preprocessTerms(contents):
     return [words, tags]
 
 
-# correctly assigning the POS to each word, returns a valid list of lists: [words, tags] in a list
+# correctly assigns the POS to each word, returns a valid list of lists: [words, tags] where both words and tags are a list
 def checkPOS(contents):
     words, tags = preprocessTerms(contents)
     originalTags, nltkTags = tags["original"], tags["nltk"]
@@ -126,16 +109,22 @@ def checkPOS(contents):
         f"SEE HERE: \n\n \t =========== original tags: ============= \n {originalTags} \n\n \t =========== nltk tags: ============= \n {nltkTags}"
     )
     scores = caclulateScore(tags)
-    threshold = 1  # TODO avoid this magic number here
-    uncertainTagIndices = detectDiscrepencies(scores, threshold)
+    uncertainTagIndices = detectDiscrepencies(scores, THRESHOLD)
     finalisedTags = []
     for idx in range(
         len(words)
-    ):  # asks for human to check only for the uncertained indices
+    ):  # asks for human to check only for the uncertain indices
         currentTag = originalTags[idx]
         if idx in uncertainTagIndices:
+            wordsBefore, wordsAfter = 0 if idx < 10 else (idx - 10), len(words) if idx >= len(words) - 10 else (idx + 10)
             currentTerm = "" + words[idx] + "_" + currentTag
-            finalisedTag = determineCorrectTag(currentTerm)
+            # generates some reference text to help determine the correct tag for that word:
+            #==================================================================================
+            referenceText = "\n\t\t Here's the nearby text for reference:\n\n ================================ \n\t\t"
+            for x in range(wordsBefore, wordsAfter):
+                referenceText += (("{" + words[x] + "}") if idx == x else words[x]) + " "
+            #==================================================================================
+            finalisedTag = determineCorrectTag(currentTerm, referenceText)
             finalisedTags.append(finalisedTag)
         else:
             finalisedTags.append(currentTag)
@@ -155,7 +144,11 @@ def detectDiscrepencies(scores, threshold):
 
 # asks human what the correct tag should be(<word>_<tag>) because a discrepancy has been found
 # returns the correct tag for that particular word
-def determineCorrectTag(term):
+def determineCorrectTag(term, referenceText):
+    # referenceText = "\n\t\t Here's the nearby text for reference:\n\n ================================ \n\t\t"
+    # for word in neighbouringWords:
+    #     referenceText += word + " "
+    print(referenceText)
     splitTerm = term.split("_")
     word, tag = splitTerm
     isValidTag = False
