@@ -22,7 +22,6 @@ import os, signal
 import logging
 import nltk
 import spacy
-
 # sp = spacy.load('en_core_web_sm')
 
 logger = logging.getLogger("logger")
@@ -31,15 +30,52 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
 OUTPUT_FILE_NAME = "./output"
 
-
+PosDictionary = {}
+PosDictionary["1"] = "CC"
+PosDictionary["2"] = "CD"
+PosDictionary["3"] = "DT"
+PosDictionary["4"] = "EX"
+PosDictionary["5"] = "FW"
+PosDictionary["6"] = "IN"
+PosDictionary["7"] = "JJ"
+PosDictionary["8"] = "JJR"
+PosDictionary["9"] = "JJS"
+PosDictionary["10"] = "LS"
+PosDictionary["11"] = "MD"
+PosDictionary["12"] = "NN"
+PosDictionary["13"] = "NNS"
+PosDictionary["14"] = "NNP"
+PosDictionary["15"] = "NNPS"
+PosDictionary["16"] = "PDT"
+PosDictionary["17"] = "POS"
+PosDictionary["18"] = "PRP"
+PosDictionary["19"] = "PRP$"
+PosDictionary["20"] = "RB"
+PosDictionary["21"] = "RBR"
+PosDictionary["22"] = "RBS"
+PosDictionary["23"] = "RP"
+PosDictionary["24"] = "SYM"
+PosDictionary["25"] = "TO"
+PosDictionary["26"] = "UH"
+PosDictionary["27"] = "VB"
+PosDictionary["28"] = "VBD"
+PosDictionary["29"] = "VBG"
+PosDictionary["30"] = "VBN"
+PosDictionary["31"] = "VBP"
+PosDictionary["32"] = "VBZ"
+PosDictionary["33"] = "WDT"
+PosDictionary["34"] = "WP"
+PosDictionary["35"] = "WP$"
+PosDictionary["36"] = "WRB"    
 def main():
     # note that the input file has to be in the same project directory
     sourceFileName = sys.argv[1]
     workspaceFileName = "workspace_" + sourceFileName[:-5] + ".txt"
     contents = init(sourceFileName, workspaceFileName)
+    
+    print(contents)
     finalWords, finalTags = checkPOS(contents)
     writeToOutputFile(finalWords, finalTags)
-    print(endingGreeting)
 
 
 """ 
@@ -65,11 +101,34 @@ assert:
  """
 # returns an array containing NLTK tags
 def generateNLTKtags(originalWords):
-    nltkOutput = nltk.pos_tag(originalWords)  # nltkOutput: [(<word>_<tag>), etc..]
-    nltkTags = []
+    # just take out the tags (dont want words) + validate the tags (check againts dictionary)
+    # # nltkArrSize = len(accumulatedText)
+    # ogWordsArrSize = len(originalWords)
+    # tokens = nltk.word_tokenize(originalWords)
+    nltkOutput = nltk.pos_tag(originalWords) #nltkOutput: [(<word>_<tag>), etc..] 
+    nltkTags =[]
     for term in nltkOutput:
-        nltkTags.append(term[1])  # nb: nltk output is an array of tuples that's why
+        # print(i) #("test", 'NN')
+        nltkTags.append(term[1])
+
+    # Perfoming checks only
+    # # if nltkArrSize == ogWordsArrSize:
+    #     for i in range(nltkArrSize): # index 1 etc
+    #         # NLTK
+    #         nltkTerm = nltkOutput[i]  #<word>_<Tag>
+    #         splitTerm = nltkTerm.split("_")
+    #         nltkWord, nltkTag = splitTerm #<word>
+    #         nltkTags.append(nltkTag)
+    #         if validateTag(nltkTag):
+    #             # Orignal term 
+    #             targetWord = originalWords[i]  #<word>
+    #             if targetWord != nltkWord:
+    #                 logger.debug("Incorrect matching words")
+    #                 return None
+
+    # just return tags from nltkOutput
     return nltkTags
+
 
 
 # returns contents from the workspace if workspace aldy exists, else copies from source to new workspace:
@@ -91,101 +150,33 @@ def init(sourceFileName, workspaceFileName):
     return workspaceContent
 
 
-# preprocesses the single string of contents and returns the following list [words, tags]
-# where words is a list of words
-# tags is a dictionary that maps a tagger (e.g. stanford, nltk...) to a list of tags associated to the words list
-def preprocessTerms(contents):
+# correctly assigning the POS to each word, returns a valid list of lists: [words, tags] in a list
+def checkPOS(contents):
     splitContents = contents.split(" ")
     size = len(splitContents)
-    words, tags = [], {"original": [], "nltk": []}
-    # ============== populate the words array and the tags dict =====================
+    words, tags = [], {"original": [], "nltk":[]}
     for i in range(size):  # iters thru term where term is <word>_<tag>
         term = splitContents[i]  # word_tag
         if "_" in term:
             splitTerm = term.split("_")
-            word, originalTag = splitTerm[0], splitTerm[1]
+            word, originalTag = splitTerm[0] , splitTerm[1]
             # add in a check the tag should be valid
             if validateTag(originalTag):
                 logger.debug(
                     "iteration #%s with the term %s gives the word %s and has the tag %s"
                     % (i, term, word, originalTag)
                 )
-                # separated words and tags into different arrays
+                #separated words and tags into different arrays
                 words.append(word)
                 tags["original"].append(originalTag)
+
+    #Array of NLTK tags 
     tags["nltk"] = generateNLTKtags(words)
-    # ===============================================================================
-    return [words, tags]
-
-
-# correctly assigning the POS to each word, returns a valid list of lists: [words, tags] in a list
-def checkPOS(contents):
-    words, tags = preprocessTerms(contents)
-    originalTags, nltkTags = tags["original"], tags["nltk"]
-    print(
-        f"SEE HERE: \n\n \t =========== original tags: ============= \n {originalTags} \n\n \t =========== nltk tags: ============= \n {nltkTags}"
-    )
-    scores = caclulateScore(tags)
-    threshold = 1  # TODO avoid this magic number here
-    uncertainTagIndices = detectDiscrepencies(scores, threshold)
-    finalisedTags = []
-    for idx in range(
-        len(words)
-    ):  # asks for human to check only for the uncertained indices
-        currentTag = originalTags[idx]
-        if idx in uncertainTagIndices:
-            currentTerm = "" + words[idx] + "_" + currentTag
-            finalisedTag = determineCorrectTag(currentTerm)
-            finalisedTags.append(finalisedTag)
-        else:
-            finalisedTags.append(currentTag)
-    return (words, finalisedTags)
-
-
-# determines which scores are too low, and judges that as a discrepency
-# returns a list of indices respective to the original array to reflect what needs to be prompted to human
-def detectDiscrepencies(scores, threshold):
-    discrepencies = []
-    for idx in range(len(scores)):
-        score = scores[idx]
-        if score < threshold:
-            discrepencies.append(idx)
-    return discrepencies  # list of index for humanPrompt to execute on
-
-
-# asks human what the correct tag should be(<word>_<tag>) because a discrepancy has been found
-# returns the correct tag for that particular word
-def determineCorrectTag(term):
-    splitTerm = term.split("_")
-    word, tag = splitTerm
-    isValidTag = False
-    while not isValidTag:
-        prompt = f"Is this valid? \n \t [ {word} \n\t --------- \n\t       {tag} ] \n \t type Y or N "
-        userInput = ""
-        try:
-            userInput = (input(prompt)).upper()
-        except KeyboardInterrupt:
-            # TODO: figure out how to do the pausing later
-            logger.debug("DETECTED CTRL C")
-        isValidTag = (userInput == "Y") and validateTag(tag)
-        if not isValidTag:
-            tag = input("Enter valid tag:").upper()
-    return tag
-
-
-# input: dictionary of generated Tags
-#  returns a list of scores
-# TODO: make this generalised once we use more than 1 reference models
-def caclulateScore(generatedTags):
-    stanfordTags, nltkTags = generatedTags["original"], generatedTags["nltk"]
-    assert len(stanfordTags) == len(nltkTags)
-    scores = []
-    for idx in range(len(stanfordTags)):
-        score = 0
-        if stanfordTags[idx] == nltkTags[idx]:
-            score = 1  # TODO: do the weighted calculation i(wnith spacy etc)   the next update to this function
-        scores.append(score)
-    return scores
+    original, nltk = tags["original"] , tags["nltk"] 
+    print(f"SEE HERE: \n\n \t =========== stanford tags: ============= \n {original} \n\n \t =========== nltk tags: ============= \n {nltk}")
+    # return promptHuman(words, tags) 
+    # TODO: uncomment this later after modifying promptHuman where tags is a dict, the current thing shall be a stub for now
+    return (words, tags["original"])
 
 
 # cleans up the program upon a signal interruption by
@@ -224,7 +215,6 @@ def writeToOutputFile(words, tags):
     outputFile.write(string)
 
 
-# TODO: TO BE DEPRECATED
 # promts a human to check if the current associated tag to a word is correct and asks for correct input otherwise
 # returns a list: [correctWords, correctTags]
 # TODO: improve prompting by :
@@ -261,56 +251,9 @@ def validateTag(tag):
     return tag in PosDictionary.values()
 
 
-PosDictionary = {}
-PosDictionary["1"] = "CC"
-PosDictionary["2"] = "CD"
-PosDictionary["3"] = "DT"
-PosDictionary["4"] = "EX"
-PosDictionary["5"] = "FW"
-PosDictionary["6"] = "IN"
-PosDictionary["7"] = "JJ"
-PosDictionary["8"] = "JJR"
-PosDictionary["9"] = "JJS"
-PosDictionary["10"] = "LS"
-PosDictionary["11"] = "MD"
-PosDictionary["12"] = "NN"
-PosDictionary["13"] = "NNS"
-PosDictionary["14"] = "NNP"
-PosDictionary["15"] = "NNPS"
-PosDictionary["16"] = "PDT"
-PosDictionary["17"] = "POS"
-PosDictionary["18"] = "PRP"
-PosDictionary["19"] = "PRP$"
-PosDictionary["20"] = "RB"
-PosDictionary["21"] = "RBR"
-PosDictionary["22"] = "RBS"
-PosDictionary["23"] = "RP"
-PosDictionary["24"] = "SYM"
-PosDictionary["25"] = "TO"
-PosDictionary["26"] = "UH"
-PosDictionary["27"] = "VB"
-PosDictionary["28"] = "VBD"
-PosDictionary["29"] = "VBG"
-PosDictionary["30"] = "VBN"
-PosDictionary["31"] = "VBP"
-PosDictionary["32"] = "VBZ"
-PosDictionary["33"] = "WDT"
-PosDictionary["34"] = "WP"
-PosDictionary["35"] = "WP$"
-PosDictionary["36"] = "WRB"
-
-
-endingGreeting = """
-8888888                                                           888                               
-  888                                                             888                               
-  888                                                             888                               
-  888        8888b.  88888b.d88b.      .d8888b   .d88b.       .d88888  .d88b.  88888b.   .d88b.     
-  888           "88b 888 "888 "88b     88K      d88""88b     d88" 888 d88""88b 888 "88b d8P  Y8b    
-  888       .d888888 888  888  888     "Y8888b. 888  888     888  888 888  888 888  888 88888888    
-  888       888  888 888  888  888          X88 Y88..88P     Y88b 888 Y88..88P 888  888 Y8b.    d8b 
-8888888     "Y888888 888  888  888      88888P'  "Y88P"       "Y88888  "Y88P"  888  888  "Y8888 Y8P 
-
-"""
-
-if __name__ == "__main__":
+if __name__ == "__main__": 
     main()
+
+# if __name__ == "__main__":
+#     print("execut ion happens")
+#     PoSTagging().main()
