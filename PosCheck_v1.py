@@ -14,6 +14,12 @@ possible issues to face:
    document. (actually we never ever preserve the whitespace
    from the source document)
 
+Questions:
+1. Input file related queries:
+    a. How come there are duplicate words in the input file?
+    b. How come some words are erroneously joined "generalhospital"?
+
+
 Written by: Alyssa Nah Xiao Ting and Ritesh Kumar
  ============================================== """
 import sys
@@ -33,6 +39,8 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 OUTPUT_FILE_NAME = "./output"
 THRESHOLD = 1
 NUMBER_OF_UNCERTAINTIES = None
+
+
 
 
 def main():
@@ -90,10 +98,10 @@ def preprocessTerms(contents):
             word, originalTag = splitTerm[0], splitTerm[1]
             # add in a check the tag should be valid
             if validateTag(originalTag):
-                logger.debug(
-                    "iteration #%s with the term %s gives the word %s and has the tag %s"
-                    % (i, term, word, originalTag)
-                )
+                # logger.debug(
+                #     "iteration #%s with the term %s gives the word %s and has the tag %s"
+                #     % (i, term, word, originalTag)
+                # )
                 # separated words and tags into different arrays
                 words.append(word)
                 tags["original"].append(originalTag)
@@ -166,9 +174,13 @@ def determineCorrectTag(term, referenceText):
             logger.debug("DETECTED CTRL C")
         isValidTag = (userInput == "Y") and validateTag(tag)
         if not isValidTag:
-            tag = input("Enter valid tag:").upper()
+            showHelp()
+            userInput = input("Enter valid tag:").upper()
+            if userInput not in PosDictionary.keys():
+                continue
+            else:
+                tag = PosDictionary.get(userInput)
     return tag
-
 
 # input: dictionary of generated Tags
 #  returns a list of scores
@@ -260,7 +272,6 @@ def promptHuman(initialWords, initialTags):
 def validateTag(tag):
     return tag in PosDictionary.values()
 
-
 PosDictionary = {}
 PosDictionary["1"] = "CC"
 PosDictionary["2"] = "CD"
@@ -298,6 +309,16 @@ PosDictionary["33"] = "WDT"
 PosDictionary["34"] = "WP"
 PosDictionary["35"] = "WP$"
 PosDictionary["36"] = "WRB"
+
+
+def showHelp():
+    keys, values = list(PosDictionary.keys()), list(PosDictionary.values())        
+    message = ">>>>> available tags <<<<<<< \n" 
+    halfway = int(len(keys) / 2)
+    for idx in range(int(len(keys) / 2)):
+        k1,k2,v1,v2 = keys[idx], keys[idx + halfway],values[idx], values[idx + halfway]
+        message += f"{k1}: {v1} \t\t {k2}: {v2} \n"
+    print(message)
 
 
 endingGreeting = f"""
