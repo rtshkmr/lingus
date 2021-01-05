@@ -32,6 +32,7 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 # define constants here
 OUTPUT_FILE_NAME = "./output"
 THRESHOLD = 1
+NUMBER_OF_UNCERTAINTIES = None
 
 
 def main():
@@ -39,9 +40,9 @@ def main():
     sourceFileName = sys.argv[1]
     workspaceFileName = "workspace_" + sourceFileName[:-5] + ".txt"
     contents = init(sourceFileName, workspaceFileName)
-    finalWords, finalTags = checkPOS(contents)
+    finalWords, finalTags, stats = checkPOS(contents)
     writeToOutputFile(finalWords, finalTags)
-    print(endingGreeting)
+    print(endingGreeting + stats)
 
 # returns an array containing NLTK tags
 def generateNLTKtags(words):
@@ -110,6 +111,7 @@ def checkPOS(contents):
     )
     scores = caclulateScore(tags)
     uncertainTagIndices = detectDiscrepencies(scores, THRESHOLD)
+    numberOfUncertainties = len(uncertainTagIndices)
     finalisedTags = []
     for idx in range(
         len(words)
@@ -128,7 +130,9 @@ def checkPOS(contents):
             finalisedTags.append(finalisedTag)
         else:
             finalisedTags.append(currentTag)
-    return (words, finalisedTags)
+
+    stats = f"\n\nThe human was involved for {str(numberOfUncertainties)} times for {len(words)} valid terms."
+    return (words, finalisedTags, stats)
 
 
 # determines which scores are too low, and judges that as a discrepency
@@ -293,7 +297,8 @@ PosDictionary["35"] = "WP$"
 PosDictionary["36"] = "WRB"
 
 
-endingGreeting = """
+endingGreeting = f"""
+================================================================================================
 8888888                                                           888                               
   888                                                             888                               
   888                                                             888                               
@@ -302,6 +307,7 @@ endingGreeting = """
   888       .d888888 888  888  888     "Y8888b. 888  888     888  888 888  888 888  888 88888888    
   888       888  888 888  888  888          X88 Y88..88P     Y88b 888 Y88..88P 888  888 Y8b.    d8b 
 8888888     "Y888888 888  888  888      88888P'  "Y88P"       "Y88888  "Y88P"  888  888  "Y8888 Y8P 
+================================================================================================
 
 """
 
