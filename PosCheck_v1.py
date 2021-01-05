@@ -212,13 +212,16 @@ def writeToWorkspace(content, workspaceFileName):
 # appends to non-existing / pre-existing output file
 def writeToOutputFile(words, tags):
     outputFile = open(OUTPUT_FILE_NAME, "a+")
+    submissionFile = open(OUTPUT_FILE_NAME + "_submission" , "a+")
     size = len(words)
-    string = "\n===================== STARTING LINE =============================\n"
+    outputString, submissionString = "\n===================== STARTING LINE =============================\n", "\n"
     for i in range(size):
         word, tag = words[i], tags[i]
-        entry = "[" + str(word) + "_" + str(tag) + "]"
-        string += entry + "\n"
-    outputFile.write(string)
+        outputEntry, submissionEntry = "[" + str(word) + "_" + str(tag) + "]", str(word) + "_" + str(tag) + " "
+        outputString += outputEntry + "\n"
+        submissionString += submissionEntry
+    outputFile.write(outputString)
+    submissionFile.write(submissionString)
 
 
 # TODO: TO BE DEPRECATED
