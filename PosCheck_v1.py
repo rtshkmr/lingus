@@ -28,6 +28,7 @@ import os, signal
 import logging
 import nltk
 import spacy
+from pyfiglet import Figlet
 
 # sp = spacy.load('en_core_web_sm')
 
@@ -39,6 +40,7 @@ logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 OUTPUT_FILE_NAME = "./output"
 THRESHOLD = 1
 NUMBER_OF_UNCERTAINTIES = None
+f = Figlet(font="colossal")
 
 
 
@@ -297,16 +299,12 @@ def showHelp():
     print(message)
 
 
+
+
 endingGreeting = f"""
-================================================================================================
-8888888                                                           888                               
-  888                                                             888                               
-  888                                                             888                               
-  888        8888b.  88888b.d88b.      .d8888b   .d88b.       .d88888  .d88b.  88888b.   .d88b.     
-  888           "88b 888 "888 "88b     88K      d88""88b     d88" 888 d88""88b 888 "88b d8P  Y8b    
-  888       .d888888 888  888  888     "Y8888b. 888  888     888  888 888  888 888  888 88888888    
-  888       888  888 888  888  888          X88 Y88..88P     Y88b 888 Y88..88P 888  888 Y8b.    d8b 
-8888888     "Y888888 888  888  888      88888P'  "Y88P"       "Y88888  "Y88P"  888  888  "Y8888 Y8P 
+================================================================================================ \n
+{f.renderText("I am so done")}
+ \n
 ================================================================================================
 
 """
