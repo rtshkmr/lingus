@@ -235,40 +235,6 @@ def writeToOutputFile(words, tags):
     outputFile.write(outputString)
     submissionFile.write(submissionString)
 
-
-# TODO: TO BE DEPRECATED
-# promts a human to check if the current associated tag to a word is correct and asks for correct input otherwise
-# returns a list: [correctWords, correctTags]
-# TODO: improve prompting by :
-#   1. give users a list of possible tags they can access by entering their repsective key number as per the dictionary we have
-#   2. Maybe do some control flow e.g. step 1 user chooses noun, then step 2: what kinda noun, proper?...
-def promptHuman(initialWords, initialTags):
-    size = len(initialWords)
-    checkedWords, checkedTags = [], []
-    for i in range(size):
-        newTag = initialTags[i]  # first initial tag from array
-        isValidTag = False
-        while (
-            not isValidTag
-        ):  # keep prompting for that word until user agrees and enters Y for yes
-            prompt = f"Is this valid? \n \t [ {initialWords[i]} \n\t --------- \n\t       {newTag} ] \n \t type Y or N "
-            userInput = ""
-            try:
-                userInput = (input(prompt)).upper()
-            except KeyboardInterrupt:  # this allows us to pause the process by pressing CTRL+C
-                logger.debug("DETECTED CTRL C")
-                uncheckedWords, uncheckedTags = initialWords[i:], initialTags[i:]
-                cleanup(checkedWords, checkedTags, uncheckedWords, uncheckedTags)
-            isValidTag = (userInput == "Y") and validateTag(newTag)
-            if not isValidTag:
-                newTag = input("Enter valid tag:").upper()
-            else:
-                checkedWords.append(initialWords[i])
-                checkedTags.append(newTag)
-                break
-    return [checkedWords, checkedTags]
-
-
 def validateTag(tag):
     return tag in PosDictionary.values()
 
@@ -309,15 +275,25 @@ PosDictionary["33"] = "WDT"
 PosDictionary["34"] = "WP"
 PosDictionary["35"] = "WP$"
 PosDictionary["36"] = "WRB"
-
+PosDictionary["37"] = "SFP"
 
 def showHelp():
+    line = "___________________________________________________\n"
     keys, values = list(PosDictionary.keys()), list(PosDictionary.values())        
-    message = ">>>>> available tags <<<<<<< \n" 
-    halfway = int(len(keys) / 2)
-    for idx in range(int(len(keys) / 2)):
-        k1,k2,v1,v2 = keys[idx], keys[idx + halfway],values[idx], values[idx + halfway]
-        message += f"{k1}: {v1} \t\t {k2}: {v2} \n"
+    message = "\n----- {enter number representing the tag} -------- \n" + line
+    leftPtr, rightPtr = 0, len(keys) - 1
+    while(rightPtr >= leftPtr):
+        leftKey, leftValue = keys[leftPtr], values[leftPtr]
+        rightKey, rightValue = keys[rightPtr], values[rightPtr]
+        if leftPtr != rightPtr:
+            if rightPtr >= 25:
+                message += (f"{leftKey}: {leftValue} \t\t\t {rightKey}: {rightValue} \n")  # this is just to prettify the printing, purely aesthetic
+            else: 
+                message += (f"{leftKey}: {leftValue} \t\t {rightKey}: {rightValue} \n") 
+        else: 
+            message += (f"{rightKey}: {rightValue} \n") 
+        rightPtr -= 1; leftPtr += 1
+    message += line
     print(message)
 
 
