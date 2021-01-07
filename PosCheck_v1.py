@@ -41,6 +41,9 @@ OUTPUT_FILE_NAME = "./output"
 THRESHOLD = 1
 NUMBER_OF_UNCERTAINTIES = None
 f = Figlet(font="colossal")
+# TODO: import this wordlist from somewhere in the internet. there should be singlish wordlists
+SinglishWords = ["LA", "LAH", "LOR", "AH", "MEH", "LEH", "HOR"]
+PseudoSinglishWords = ["ONE", "WHAT"]
 
 
 
@@ -56,7 +59,7 @@ def main():
 
 # returns an array containing NLTK tags
 def generateNLTKtags(words):
-    nltkOutput = nltk.pos_tag(words)
+    nltkOutput = nltk.pos_tag(words)    
     nltkTags = []
     for term in nltkOutput:
         nltkTags.append(term[1])  # nb: nltk output is an array of tuples that's why nltkOutput: [(<word>_<tag>), etc..]
@@ -112,21 +115,42 @@ def preprocessTerms(contents):
     return [words, tags]
 
 
+
+# auto tags the confirmed singlish words and retuns the updated tags and updatedUncertainTagIndices
+def autoTagWords(scores, words, currentTags, currentUncertainTagIndices):
+    updatedTags, updatedUncertainTagIndices = [], currentUncertainTagIndices
+    print(f" SEE HERE scores length: {len(scores)}, words length: {len(words)},tags length: {len(currentTags)}")
+    assert len(scores) == len(words) == len(currentTags)
+    for idx in range(len(words)):
+        word, score, updatedTag = words[idx], scores[idx], currentTags[idx]
+        # autoTagsSinglish words:
+        if(word in SinglishWords and score == -1): # just being extra safe, could have just iterated thorugh scores without looking thru any of the words actually TODO: consider optimising this
+            #autotag
+            updatedTag = "SFP"
+            # remove from uncertainTagIndices if the idx has been flagged
+            if idx in currentUncertainTagIndices:
+                updatedUncertainTagIndices.remove(idx)
+        updatedTags.append(updatedTag)
+    return words, updatedTags, updatedUncertainTagIndices
+
+
 # correctly assigns the POS to each word, returns a valid list of lists: [words, tags] where both words and tags are a list
 def checkPOS(contents):
-    words, tags = preprocessTerms(contents)
-    originalTags, nltkTags = tags["original"], tags["nltk"]
+    words, tagsDict = preprocessTerms(contents)
+    assert (len(words) == len(tagsDict["original"]) == len(tagsDict["nltk"])) , "words and tag arrays are not the same length in checkPOS()"
+    originalTags, nltkTags = tagsDict["original"], tagsDict["nltk"]
     print(
         f"SEE HERE: \n\n \t =========== original tags: ============= \n {originalTags} \n\n \t =========== nltk tags: ============= \n {nltkTags}"
     )
-    scores = caclulateScore(tags)
-    uncertainTagIndices = detectDiscrepencies(scores, THRESHOLD)
+    scores = calculateScores(words, tagsDict)
+    indices = detectDiscrepencies(scores, THRESHOLD)
+    words, updatedTags, uncertainTagIndices = autoTagWords(scores, words, originalTags, indices)
     numberOfUncertainties = len(uncertainTagIndices)
     finalisedTags = []
     for idx in range(
         len(words)
     ):  # asks for human to check only for the uncertain indices
-        currentTag = originalTags[idx]
+        currentTag = updatedTags[idx]
         if idx in uncertainTagIndices:
             wordsBefore, wordsAfter = 0 if idx < 10 else (idx - 10), len(words) if idx >= len(words) - 10 else (idx + 10)
             currentTerm = "" + words[idx] + "_" + currentTag
@@ -147,6 +171,8 @@ def checkPOS(contents):
 
 # determines which scores are too low, and judges that as a discrepency
 # returns a list of indices respective to the original array to reflect what needs to be prompted to human
+# scores: the word list: [w1, w2, ...] will have associated scores for each word as a list: [s1, s2...]
+# threshold: a minimum score for a single word. 
 def detectDiscrepencies(scores, threshold):
     discrepencies = []
     for idx in range(len(scores)):
@@ -186,18 +212,27 @@ def determineCorrectTag(term, referenceText):
 
 # input: dictionary of generated Tags
 #  returns a list of scores
+# if it's a confirmed to be a singlish wrod, then we set the score as -1
+# if it's a pseudoSinglish word, e.g. "one" then we set the score to be 0
+
 # TODO: make this generalised once we use more than 1 reference models
-def caclulateScore(generatedTags):
+def calculateScores(words, generatedTags):
     stanfordTags, nltkTags = generatedTags["original"], generatedTags["nltk"]
-    assert len(stanfordTags) == len(nltkTags)
+    size = len(stanfordTags)
+    assert size == len(nltkTags)
     scores = []
-    for idx in range(len(stanfordTags)):
-        score = 0
-        if stanfordTags[idx] == nltkTags[idx]:
-            score = 1  # TODO: do the weighted calculation i(wnith spacy etc)   the next update to this function
+    for idx in range(size):
+        word = words[idx].upper()
+        if word in SinglishWords:
+            score = -1 # looking at scores array, we can say that - 1 means safe to autocheck without asking the human
+        elif word in PseudoSinglishWords:
+            score = 0 # means there's definitely gonna be some discrepancy
+        else: 
+            score = 0
+            if stanfordTags[idx] == nltkTags[idx]:
+                score = 1  # TODO: do the weighted calculation i(wnith spacy etc)   the next update to this function
         scores.append(score)
     return scores
-
 
 # cleans up the program upon a signal interruption by
 # 1: appending checkedWords and checkedTags to the output file
