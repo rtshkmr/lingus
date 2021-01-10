@@ -30,11 +30,18 @@ import nltk
 import spacy
 from pyfiglet import Figlet
 
+
 # sp = spacy.load('en_core_web_sm')
 
 logger = logging.getLogger("logger")
 # logger.setLevel(logging.DEBUG)
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+# logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+
+logging.basicConfig(filename="logging_output.txt",
+                            filemode='a+',
+                            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                            datefmt='%H:%M:%S',
+                            level=logging.DEBUG)
 
 # define constants here
 OUTPUT_FILE_NAME = "./output"
@@ -44,6 +51,7 @@ f = Figlet(font="colossal")
 # TODO: import this wordlist from somewhere in the internet. there should be singlish wordlists
 SinglishWords = ["LA", "LAH", "LOR", "AH", "MEH", "LEH", "HOR"]
 PseudoSinglishWords = ["ONE", "WHAT"]
+tagsChanged=[]
 
 
 
@@ -69,7 +77,7 @@ def generateNLTKtags(words):
 def init(sourceFileName, workspaceFileName):
     workspaceContent = ""
     if os.path.isfile(workspaceFileName):
-        logger.debug("workspace file exists, shall read from it")
+        # logger.debug("workspace file exists, shall read from it")
         workspaceContent = open(workspaceFileName, "r").read()
         logger.debug(
             ">>> the file exists and here's the contents \n ================================ \n"
@@ -165,6 +173,9 @@ def checkPOS(contents):
         else:
             finalisedTags.append(currentTag)
 
+
+    # print("**** THIS IS FINALISED TAGS ", finalisedTags)
+    # print("**** THESE ARE CHANGED TAGS ", tagsChanged)
     stats = f"\n\nThe human was involved for {str(numberOfUncertainties)} times for {len(words)} valid terms."
     return (words, finalisedTags, stats)
 
@@ -201,13 +212,16 @@ def determineCorrectTag(term, referenceText):
             # TODO: figure out how to do the pausing later
             logger.debug("DETECTED CTRL C")
         isValidTag = (userInput == "Y") and validateTag(tag)
+        logging.info('Checked for the word {' + word + '} and the tag {' +tag +'}')
         if not isValidTag:
             showHelp()
             userInput = input("Enter valid tag:").upper()
+            logging.info('Tag entered: ' + userInput+' for the word ' +word)
             if userInput not in PosDictionary.keys():
                 continue
             else:
                 tag = PosDictionary.get(userInput)
+        tagsChanged.append(tag)
     return tag
 
 # input: dictionary of generated Tags
@@ -333,6 +347,7 @@ def showHelp():
     message += line
     print(message)
 
+# def outputLoggingFile(changedTags):
 
 
 

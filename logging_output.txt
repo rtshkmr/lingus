@@ -1,0 +1,152 @@
+18:25:45,721 root DEBUG This message should go to the log file
+18:25:45,721 root INFO So should this
+18:25:45,721 root WARNING And this, too
+18:25:45,727 logger DEBUG >>> the file exists and here's the contents 
+ ================================ 
+Normally_RB I._PRP ._.
+
+I._PRP ._.
+
+I_PRP work_VBP with_IN my_PRP$ uncle_NN in_IN Robinson_NNP Road_NNP when_WRB I_PRP was_VBD young_JJ ,_, when_WRB when_WRB I_PRP was_VBD in_IN schooling_NN and_CC beside_IN beside_IN that_DT ,_, I_PRP now_RB I._PRP ._.
+
+		I._PRP ._.		
+
+I_PRP have_VBP the_DT feeling_NN that_IN the_DT eyes_NNS my_PRP$ left_JJ left_JJ eye_NN some_DT difficulty_NN ,_, maybe_RB the_DT doctor_NN told_VBD me_PRP they_PRP say_VBP they_PRP operate_VBP this_DT one_NN already_RB ,_, this_DT one_CD not_RB yet_RB I_PRP don_VBP t_NN know_VB whether_IN I_PRP want_VBP to_TO go_VB and_CC operate_VB or_CC not_RB ,_, they_PRP never_RB say_VBP anything_NN because_IN this_DT and_CC that_IN ,_, then_RB everything_NN come_VBN between_IN ._.
+
+I_PRP ask_VBP them_PRP they_PRP say_VBP they_PRP operate_VB my_PRP$ eye_NN my_PRP$ right_JJ eye_NN this_DT one_NN already_RB then_RB they_PRP will_MD need_VB to_TO operate_VB my_PRP$ left_JJ eye_NN or_CC not_RB they_PRP say_VBP of_IN course_NN lah_NN but_CC now_RB they_PRP never_RB say_VBP anything_NN because_IN of_IN they_PRP ask_VBP me_PRP to_TO go_VB and_CC see_VB this_DT doctor_NN and_CC then_RB the_DT other_JJ doctor_NN so_RB many_JJ doctors_NNS so_RB so_RB after_IN seeing_VBG that_DT doctor_NN I_PRP don_VBP t_NN know_VB whether_IN they_PRP have_VBP feedback_NN or_CC not_RB ,_, feedback_NN to_TO them_PRP or_CC not_RB but_CC for_IN me_PRP ,_, I_PRP think_VBP I_PRP think_VB so_RB lah_JJ something_NN somethingwrong_VBG with_IN the_DT eyesight_NN or_CC something_NN like_IN that_DT ._.
+
+I_PRP think_VBP I_PRP will_MD go_VB back_RB to_TO general_JJ generalhospital_JJ there_EX and_CC ask_VB them_PRP whether_IN I_PRP need_VBP to_TO come_VB back_RB or_CC not_RB they_PRP need_VBP they_PRP think_VBP they_PRP need_VBP operation_NN any_DT more_JJR then_RB they_PRP they_PRP can_MD carry_VB on_IN if_IN not_RB then_RB I_PRP no_DT need_NN to_TO go_VB of_IN course_NN la_NNP better_RBR that_WDT s_VBZ all_DT and_CC *_SYM chuckle_VBP my_PRP$ eyesight_NN like_IN the_DT left_JJ side_NN still_RB very_RB uncomfortable_JJ oh_UH ..._: oh_UH ._.
+ ================================ 
+
+
+
+
+18:26:10,467 logger DEBUG DETECTED CTRL C
+18:26:13,637 logger DEBUG DETECTED CTRL C
+18:26:14,263 logger DEBUG DETECTED CTRL C
+18:26:19,325 root DEBUG This message should go to the log file
+18:26:19,325 root INFO So should this
+18:26:19,325 root WARNING And this, too
+18:26:19,330 logger DEBUG >>> the file exists and here's the contents 
+ ================================ 
+Normally_RB I._PRP ._.
+
+I._PRP ._.
+
+I_PRP work_VBP with_IN my_PRP$ uncle_NN in_IN Robinson_NNP Road_NNP when_WRB I_PRP was_VBD young_JJ ,_, when_WRB when_WRB I_PRP was_VBD in_IN schooling_NN and_CC beside_IN beside_IN that_DT ,_, I_PRP now_RB I._PRP ._.
+
+		I._PRP ._.		
+
+I_PRP have_VBP the_DT feeling_NN that_IN the_DT eyes_NNS my_PRP$ left_JJ left_JJ eye_NN some_DT difficulty_NN ,_, maybe_RB the_DT doctor_NN told_VBD me_PRP they_PRP say_VBP they_PRP operate_VBP this_DT one_NN already_RB ,_, this_DT one_CD not_RB yet_RB I_PRP don_VBP t_NN know_VB whether_IN I_PRP want_VBP to_TO go_VB and_CC operate_VB or_CC not_RB ,_, they_PRP never_RB say_VBP anything_NN because_IN this_DT and_CC that_IN ,_, then_RB everything_NN come_VBN between_IN ._.
+
+I_PRP ask_VBP them_PRP they_PRP say_VBP they_PRP operate_VB my_PRP$ eye_NN my_PRP$ right_JJ eye_NN this_DT one_NN already_RB then_RB they_PRP will_MD need_VB to_TO operate_VB my_PRP$ left_JJ eye_NN or_CC not_RB they_PRP say_VBP of_IN course_NN lah_NN but_CC now_RB they_PRP never_RB say_VBP anything_NN because_IN of_IN they_PRP ask_VBP me_PRP to_TO go_VB and_CC see_VB this_DT doctor_NN and_CC then_RB the_DT other_JJ doctor_NN so_RB many_JJ doctors_NNS so_RB so_RB after_IN seeing_VBG that_DT doctor_NN I_PRP don_VBP t_NN know_VB whether_IN they_PRP have_VBP feedback_NN or_CC not_RB ,_, feedback_NN to_TO them_PRP or_CC not_RB but_CC for_IN me_PRP ,_, I_PRP think_VBP I_PRP think_VB so_RB lah_JJ something_NN somethingwrong_VBG with_IN the_DT eyesight_NN or_CC something_NN like_IN that_DT ._.
+
+I_PRP think_VBP I_PRP will_MD go_VB back_RB to_TO general_JJ generalhospital_JJ there_EX and_CC ask_VB them_PRP whether_IN I_PRP need_VBP to_TO come_VB back_RB or_CC not_RB they_PRP need_VBP they_PRP think_VBP they_PRP need_VBP operation_NN any_DT more_JJR then_RB they_PRP they_PRP can_MD carry_VB on_IN if_IN not_RB then_RB I_PRP no_DT need_NN to_TO go_VB of_IN course_NN la_NNP better_RBR that_WDT s_VBZ all_DT and_CC *_SYM chuckle_VBP my_PRP$ eyesight_NN like_IN the_DT left_JJ side_NN still_RB very_RB uncomfortable_JJ oh_UH ..._: oh_UH ._.
+ ================================ 
+
+
+
+
+18:26:30,432 logger DEBUG DETECTED CTRL C
+18:26:35,236 root DEBUG This message should go to the log file
+18:26:35,236 root INFO So should this
+18:26:35,236 root WARNING And this, too
+18:26:35,243 logger DEBUG >>> the file exists and here's the contents 
+ ================================ 
+Normally_RB I._PRP ._.
+
+I._PRP ._.
+
+I_PRP work_VBP with_IN my_PRP$ uncle_NN in_IN Robinson_NNP Road_NNP when_WRB I_PRP was_VBD young_JJ ,_, when_WRB when_WRB I_PRP was_VBD in_IN schooling_NN and_CC beside_IN beside_IN that_DT ,_, I_PRP now_RB I._PRP ._.
+
+		I._PRP ._.		
+
+I_PRP have_VBP the_DT feeling_NN that_IN the_DT eyes_NNS my_PRP$ left_JJ left_JJ eye_NN some_DT difficulty_NN ,_, maybe_RB the_DT doctor_NN told_VBD me_PRP they_PRP say_VBP they_PRP operate_VBP this_DT one_NN already_RB ,_, this_DT one_CD not_RB yet_RB I_PRP don_VBP t_NN know_VB whether_IN I_PRP want_VBP to_TO go_VB and_CC operate_VB or_CC not_RB ,_, they_PRP never_RB say_VBP anything_NN because_IN this_DT and_CC that_IN ,_, then_RB everything_NN come_VBN between_IN ._.
+
+I_PRP ask_VBP them_PRP they_PRP say_VBP they_PRP operate_VB my_PRP$ eye_NN my_PRP$ right_JJ eye_NN this_DT one_NN already_RB then_RB they_PRP will_MD need_VB to_TO operate_VB my_PRP$ left_JJ eye_NN or_CC not_RB they_PRP say_VBP of_IN course_NN lah_NN but_CC now_RB they_PRP never_RB say_VBP anything_NN because_IN of_IN they_PRP ask_VBP me_PRP to_TO go_VB and_CC see_VB this_DT doctor_NN and_CC then_RB the_DT other_JJ doctor_NN so_RB many_JJ doctors_NNS so_RB so_RB after_IN seeing_VBG that_DT doctor_NN I_PRP don_VBP t_NN know_VB whether_IN they_PRP have_VBP feedback_NN or_CC not_RB ,_, feedback_NN to_TO them_PRP or_CC not_RB but_CC for_IN me_PRP ,_, I_PRP think_VBP I_PRP think_VB so_RB lah_JJ something_NN somethingwrong_VBG with_IN the_DT eyesight_NN or_CC something_NN like_IN that_DT ._.
+
+I_PRP think_VBP I_PRP will_MD go_VB back_RB to_TO general_JJ generalhospital_JJ there_EX and_CC ask_VB them_PRP whether_IN I_PRP need_VBP to_TO come_VB back_RB or_CC not_RB they_PRP need_VBP they_PRP think_VBP they_PRP need_VBP operation_NN any_DT more_JJR then_RB they_PRP they_PRP can_MD carry_VB on_IN if_IN not_RB then_RB I_PRP no_DT need_NN to_TO go_VB of_IN course_NN la_NNP better_RBR that_WDT s_VBZ all_DT and_CC *_SYM chuckle_VBP my_PRP$ eyesight_NN like_IN the_DT left_JJ side_NN still_RB very_RB uncomfortable_JJ oh_UH ..._: oh_UH ._.
+ ================================ 
+
+
+
+
+18:28:10,691 logger DEBUG DETECTED CTRL C
+18:28:17,532 root DEBUG This message should go to the log file
+18:28:17,532 root INFO So should this
+18:28:17,532 root WARNING And this, too
+18:28:17,547 logger DEBUG >>> the file exists and here's the contents 
+ ================================ 
+Normally_RB I._PRP ._.
+
+I._PRP ._.
+
+I_PRP work_VBP with_IN my_PRP$ uncle_NN in_IN Robinson_NNP Road_NNP when_WRB I_PRP was_VBD young_JJ ,_, when_WRB when_WRB I_PRP was_VBD in_IN schooling_NN and_CC beside_IN beside_IN that_DT ,_, I_PRP now_RB I._PRP ._.
+
+		I._PRP ._.		
+
+I_PRP have_VBP the_DT feeling_NN that_IN the_DT eyes_NNS my_PRP$ left_JJ left_JJ eye_NN some_DT difficulty_NN ,_, maybe_RB the_DT doctor_NN told_VBD me_PRP they_PRP say_VBP they_PRP operate_VBP this_DT one_NN already_RB ,_, this_DT one_CD not_RB yet_RB I_PRP don_VBP t_NN know_VB whether_IN I_PRP want_VBP to_TO go_VB and_CC operate_VB or_CC not_RB ,_, they_PRP never_RB say_VBP anything_NN because_IN this_DT and_CC that_IN ,_, then_RB everything_NN come_VBN between_IN ._.
+
+I_PRP ask_VBP them_PRP they_PRP say_VBP they_PRP operate_VB my_PRP$ eye_NN my_PRP$ right_JJ eye_NN this_DT one_NN already_RB then_RB they_PRP will_MD need_VB to_TO operate_VB my_PRP$ left_JJ eye_NN or_CC not_RB they_PRP say_VBP of_IN course_NN lah_NN but_CC now_RB they_PRP never_RB say_VBP anything_NN because_IN of_IN they_PRP ask_VBP me_PRP to_TO go_VB and_CC see_VB this_DT doctor_NN and_CC then_RB the_DT other_JJ doctor_NN so_RB many_JJ doctors_NNS so_RB so_RB after_IN seeing_VBG that_DT doctor_NN I_PRP don_VBP t_NN know_VB whether_IN they_PRP have_VBP feedback_NN or_CC not_RB ,_, feedback_NN to_TO them_PRP or_CC not_RB but_CC for_IN me_PRP ,_, I_PRP think_VBP I_PRP think_VB so_RB lah_JJ something_NN somethingwrong_VBG with_IN the_DT eyesight_NN or_CC something_NN like_IN that_DT ._.
+
+I_PRP think_VBP I_PRP will_MD go_VB back_RB to_TO general_JJ generalhospital_JJ there_EX and_CC ask_VB them_PRP whether_IN I_PRP need_VBP to_TO come_VB back_RB or_CC not_RB they_PRP need_VBP they_PRP think_VBP they_PRP need_VBP operation_NN any_DT more_JJR then_RB they_PRP they_PRP can_MD carry_VB on_IN if_IN not_RB then_RB I_PRP no_DT need_NN to_TO go_VB of_IN course_NN la_NNP better_RBR that_WDT s_VBZ all_DT and_CC *_SYM chuckle_VBP my_PRP$ eyesight_NN like_IN the_DT left_JJ side_NN still_RB very_RB uncomfortable_JJ oh_UH ..._: oh_UH ._.
+ ================================ 
+
+
+
+
+18:28:22,605 root INFO Tag entered: 18
+18:28:28,197 root INFO Tag entered: Y
+18:33:04,523 root DEBUG This message should go to the log file
+18:33:04,524 root INFO So should this
+18:33:04,524 root WARNING And this, too
+18:33:04,536 logger DEBUG >>> the file exists and here's the contents 
+ ================================ 
+Normally_RB I._PRP ._.
+
+I._PRP ._.
+
+I_PRP work_VBP with_IN my_PRP$ uncle_NN in_IN Robinson_NNP Road_NNP when_WRB I_PRP was_VBD young_JJ ,_, when_WRB when_WRB I_PRP was_VBD in_IN schooling_NN and_CC beside_IN beside_IN that_DT ,_, I_PRP now_RB I._PRP ._.
+
+		I._PRP ._.		
+
+I_PRP have_VBP the_DT feeling_NN that_IN the_DT eyes_NNS my_PRP$ left_JJ left_JJ eye_NN some_DT difficulty_NN ,_, maybe_RB the_DT doctor_NN told_VBD me_PRP they_PRP say_VBP they_PRP operate_VBP this_DT one_NN already_RB ,_, this_DT one_CD not_RB yet_RB I_PRP don_VBP t_NN know_VB whether_IN I_PRP want_VBP to_TO go_VB and_CC operate_VB or_CC not_RB ,_, they_PRP never_RB say_VBP anything_NN because_IN this_DT and_CC that_IN ,_, then_RB everything_NN come_VBN between_IN ._.
+
+I_PRP ask_VBP them_PRP they_PRP say_VBP they_PRP operate_VB my_PRP$ eye_NN my_PRP$ right_JJ eye_NN this_DT one_NN already_RB then_RB they_PRP will_MD need_VB to_TO operate_VB my_PRP$ left_JJ eye_NN or_CC not_RB they_PRP say_VBP of_IN course_NN lah_NN but_CC now_RB they_PRP never_RB say_VBP anything_NN because_IN of_IN they_PRP ask_VBP me_PRP to_TO go_VB and_CC see_VB this_DT doctor_NN and_CC then_RB the_DT other_JJ doctor_NN so_RB many_JJ doctors_NNS so_RB so_RB after_IN seeing_VBG that_DT doctor_NN I_PRP don_VBP t_NN know_VB whether_IN they_PRP have_VBP feedback_NN or_CC not_RB ,_, feedback_NN to_TO them_PRP or_CC not_RB but_CC for_IN me_PRP ,_, I_PRP think_VBP I_PRP think_VB so_RB lah_JJ something_NN somethingwrong_VBG with_IN the_DT eyesight_NN or_CC something_NN like_IN that_DT ._.
+
+I_PRP think_VBP I_PRP will_MD go_VB back_RB to_TO general_JJ generalhospital_JJ there_EX and_CC ask_VB them_PRP whether_IN I_PRP need_VBP to_TO come_VB back_RB or_CC not_RB they_PRP need_VBP they_PRP think_VBP they_PRP need_VBP operation_NN any_DT more_JJR then_RB they_PRP they_PRP can_MD carry_VB on_IN if_IN not_RB then_RB I_PRP no_DT need_NN to_TO go_VB of_IN course_NN la_NNP better_RBR that_WDT s_VBZ all_DT and_CC *_SYM chuckle_VBP my_PRP$ eyesight_NN like_IN the_DT left_JJ side_NN still_RB very_RB uncomfortable_JJ oh_UH ..._: oh_UH ._.
+ ================================ 
+
+
+
+
+18:33:06,975 root INFO Checked I.and the tag PRP
+18:33:09,156 root INFO Tag entered: 20
+18:33:10,272 root INFO Checked I.and the tag RB
+18:33:10,897 root INFO Checked workand the tag VBP
+18:33:11,236 root INFO Checked besideand the tag IN
+18:33:11,601 root INFO Checked I.and the tag PRP
+18:33:11,927 root INFO Checked leftand the tag JJ
+18:33:12,237 root INFO Checked oneand the tag NN
+18:33:12,533 root INFO Checked oneand the tag CD
+18:33:12,797 root INFO Checked tand the tag NN
+18:33:13,108 root INFO Checked knowand the tag VB
+18:33:13,382 root INFO Checked comeand the tag VBN
+18:33:13,647 root INFO Checked askand the tag VBP
+18:33:13,952 root INFO Checked operateand the tag VB
+18:33:14,198 root INFO Checked oneand the tag NN
+18:33:14,480 root INFO Checked lahand the tag NN
+18:33:14,763 root INFO Checked thatand the tag DT
+18:33:15,33 root INFO Checked tand the tag NN
+18:33:15,288 root INFO Checked knowand the tag VB
+18:33:15,593 root INFO Checked feedbackand the tag NN
+18:33:15,883 root INFO Checked feedbackand the tag NN
+18:33:16,193 root INFO Checked thinkand the tag VB
+18:33:16,485 root INFO Checked lahand the tag JJ
+18:33:16,784 root INFO Checked somethingwrongand the tag VBG
+18:33:17,114 root INFO Checked generalhospitaland the tag JJ
+18:33:17,443 root INFO Checked laand the tag NNP
+18:33:17,804 root INFO Checked sand the tag VBZ
+18:33:18,223 root INFO Checked *and the tag SYM
+18:33:18,649 root INFO Checked ohand the tag UH
+18:33:19,89 root INFO Checked ohand the tag UH
