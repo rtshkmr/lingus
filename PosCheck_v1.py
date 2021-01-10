@@ -45,6 +45,7 @@ logging.basicConfig(filename="logging_output.txt",
 
 # define constants here
 OUTPUT_FILE_NAME = "./output"
+EXTENSION = ".txt"
 THRESHOLD = 1
 NUMBER_OF_UNCERTAINTIES = None
 f = Figlet(font="colossal")
@@ -129,16 +130,19 @@ def autoTagWords(scores, words, currentTags, currentUncertainTagIndices):
     updatedTags, updatedUncertainTagIndices = [], currentUncertainTagIndices
     print(f" SEE HERE scores length: {len(scores)}, words length: {len(words)},tags length: {len(currentTags)}")
     assert len(scores) == len(words) == len(currentTags)
+    print(f"SEE HERE, this is the uncertain index before removal {updatedUncertainTagIndices}")
     for idx in range(len(words)):
         word, score, updatedTag = words[idx], scores[idx], currentTags[idx]
         # autoTagsSinglish words:
-        if(word in SinglishWords and score == -1): # just being extra safe, could have just iterated thorugh scores without looking thru any of the words actually TODO: consider optimising this
+        if(word.upper() in SinglishWords and score == -1): # just being extra safe, could have just iterated thorugh scores without looking thru any of the words actually TODO: consider optimising this
             #autotag
+            print(f"AUTOTAGGED SINGLISH WORD: {word} had the tag {updatedTag}")
             updatedTag = "SFP"
             # remove from uncertainTagIndices if the idx has been flagged
             if idx in currentUncertainTagIndices:
-                updatedUncertainTagIndices.remove(idx)
+                updatedUncertainTagIndices.remove(idx)  
         updatedTags.append(updatedTag)
+    print(f"SEE HERE, this is the uncertain index after removal {updatedUncertainTagIndices}")
     return words, updatedTags, updatedUncertainTagIndices
 
 
@@ -152,7 +156,10 @@ def checkPOS(contents):
     )
     scores = calculateScores(words, tagsDict)
     indices = detectDiscrepencies(scores, THRESHOLD)
+    print(f"XXX before autotagging, indices: {indices}")
     words, updatedTags, uncertainTagIndices = autoTagWords(scores, words, originalTags, indices)
+    print(f"XXX after autotagging, uncertainTagIndices: {uncertainTagIndices}")
+
     numberOfUncertainties = len(uncertainTagIndices)
     finalisedTags = []
     for idx in range(
@@ -235,17 +242,21 @@ def calculateScores(words, generatedTags):
     size = len(stanfordTags)
     assert size == len(nltkTags)
     scores = []
+    wordScore = 0
     for idx in range(size):
         word = words[idx].upper()
         if word in SinglishWords:
-            score = -1 # looking at scores array, we can say that - 1 means safe to autocheck without asking the human
+            print('SINGLISH WORD FOUND : ' + word)
+            wordScore = -1 # looking at scores array, we can say that - 1 means safe to autocheck without asking the human
         elif word in PseudoSinglishWords:
-            score = 0 # means there's definitely gonna be some discrepancy
+            print('THIS WORD IS 0 score' + word)
+            wordScore = 0 # means there's definitely gonna be some discrepancy
         else: 
-            score = 0
             if stanfordTags[idx] == nltkTags[idx]:
-                score = 1  # TODO: do the weighted calculation i(wnith spacy etc)   the next update to this function
-        scores.append(score)
+                wordScore = 1  # TODO: do the weighted calculation i(wnith spacy etc)   the next update to this function
+            else: 
+                wordScore = 0
+        scores.append(wordScore)
     return scores
 
 # cleans up the program upon a signal interruption by
@@ -264,7 +275,7 @@ def cleanup(checkedWords, checkedTags, uncheckedWords, uncheckedTags):
 
 # writes content to a workspace file. Intentionally overwrites if there's an existing file:
 def writeToWorkspace(content, workspaceFileName):
-    workspaceFile = open(workspaceFileName, "w")
+    workspaceFile = open(workspaceFileName + EXTENSION, "w")
     # copy over to the new file name:
     workspaceFile.write(content)
     workspaceFile.close()
@@ -274,8 +285,8 @@ def writeToWorkspace(content, workspaceFileName):
 
 # appends to non-existing / pre-existing output file
 def writeToOutputFile(words, tags):
-    outputFile = open(OUTPUT_FILE_NAME, "a+")
-    submissionFile = open(OUTPUT_FILE_NAME + "_submission" , "a+")
+    outputFile = open(OUTPUT_FILE_NAME + EXTENSION, "a+")
+    submissionFile = open(OUTPUT_FILE_NAME + "_submission"  + EXTENSION , "a+")
     size = len(words)
     outputString, submissionString = "\n===================== STARTING LINE =============================\n", "\n"
     for i in range(size):
