@@ -19,6 +19,15 @@ Questions:
     a. How come there are duplicate words in the input file?
     b. How come some words are erroneously joined "generalhospital"?
 
+Todos:
+1. DoubleCheck logging (Ritesh to get up to speed with this)
+2. Fix the duplicated words problem
+   - see alyssa's use of the enchant dictionary to filter through for words not in a dictionary
+3.
+
+
+
+
 
 Written by: Alyssa Nah Xiao Ting and Ritesh Kumar
  ============================================== """
@@ -30,7 +39,6 @@ import nltk
 import spacy
 from pyfiglet import Figlet
 
-
 # sp = spacy.load('en_core_web_sm')
 
 logger = logging.getLogger("logger")
@@ -38,25 +46,24 @@ logger = logging.getLogger("logger")
 # logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
 logging.basicConfig(filename="logging_output.txt",
-                            filemode='a+',
-                            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
-                            datefmt='%H:%M:%S',
-                            level=logging.DEBUG)
+                    filemode='a+',
+                    format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                    datefmt='%H:%M:%S',
+                    level=logging.DEBUG)
 
 # define constants here
 OUTPUT_FILE_NAME = "./output"
-THRESHOLD = 1
+THRESHOLD = 1.5
 NUMBER_OF_UNCERTAINTIES = None
 f = Figlet(font="colossal")
 # TODO: import this wordlist from somewhere in the internet. there should be singlish wordlists
 SinglishWords = ["LA", "LAH", "LOR", "AH", "MEH", "LEH", "HOR"]
 PseudoSinglishWords = ["ONE", "WHAT"]
-tagsChanged=[]
-
-
+tagsChanged = []
 
 
 def main():
+    logger.debug("\n\n\n>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
     # note that the input file has to be in the same project directory
     sourceFileName = sys.argv[1]
     workspaceFileName = "workspace_" + sourceFileName[:-5] + ".txt"
@@ -64,14 +71,31 @@ def main():
     finalWords, finalTags, stats = checkPOS(contents)
     writeToOutputFile(finalWords, finalTags)
     print(endingGreeting + stats)
+    logger.debug("\n\n\n>>>>>>>>>>>>>>>>>>>>>> Done Running script <<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
+    # note that the input file has to be in the same project directory
+
+# returns an array containing tagging done by spacy
+def generateSpacyTags(words):
+    prose = ""
+    for word in words:
+        prose += word + " "
+    tagger = spacy.load("en_core_web_sm")
+    doc = tagger(prose)
+    tags = []
+    for token in doc:
+        tags.append(token.tag_)
+    return tags
+
+
 
 # returns an array containing NLTK tags
 def generateNLTKtags(words):
-    nltkOutput = nltk.pos_tag(words)    
+    nltkOutput = nltk.pos_tag(words)
     nltkTags = []
     for term in nltkOutput:
         nltkTags.append(term[1])  # nb: nltk output is an array of tuples that's why nltkOutput: [(<word>_<tag>), etc..]
     return nltkTags
+
 
 # returns contents from the workspace if workspace aldy exists, else copies from source to new workspace:
 def init(sourceFileName, workspaceFileName):
@@ -79,13 +103,6 @@ def init(sourceFileName, workspaceFileName):
     if os.path.isfile(workspaceFileName):
         # logger.debug("workspace file exists, shall read from it")
         workspaceContent = open(workspaceFileName, "r").read()
-        logger.debug(
-            ">>> the file exists and here's the contents \n ================================ \n"
-            + workspaceContent
-            + "\n ================================ \n"
-            + "\n\n\n"
-        )
-    else:
         sourceContent = docx2txt.process(sourceFileName)
         workspaceContent = writeToWorkspace(sourceContent, workspaceFileName)
         logger.debug(">>> init done")
@@ -102,7 +119,7 @@ def init(sourceFileName, workspaceFileName):
 def preprocessTerms(contents):
     splitContents = contents.split(" ")
     size = len(splitContents)
-    words, tags = [], {"original": [], "nltk": []}
+    words, tags = [], {"original": []}
     # ============== populate the words array and the tags dict =====================
     for i in range(size):  # iters thru term where term is <word>_<tag>
         term = splitContents[i]  # word_tag
@@ -119,9 +136,9 @@ def preprocessTerms(contents):
                 words.append(word)
                 tags["original"].append(originalTag)
     tags["nltk"] = generateNLTKtags(words)
+    tags["spacy"] = generateSpacyTags(words)
     # ===============================================================================
     return [words, tags]
-
 
 
 # auto tags the confirmed singlish words and retuns the updated tags and updatedUncertainTagIndices
@@ -132,8 +149,9 @@ def autoTagWords(scores, words, currentTags, currentUncertainTagIndices):
     for idx in range(len(words)):
         word, score, updatedTag = words[idx], scores[idx], currentTags[idx]
         # autoTagsSinglish words:
-        if(word in SinglishWords and score == -1): # just being extra safe, could have just iterated thorugh scores without looking thru any of the words actually TODO: consider optimising this
-            #autotag
+        if (
+                word in SinglishWords and score == -1):  # just being extra safe, could have just iterated thorugh scores without looking thru any of the words actually TODO: consider optimising this
+            # autotag
             updatedTag = "SFP"
             # remove from uncertainTagIndices if the idx has been flagged
             if idx in currentUncertainTagIndices:
@@ -145,34 +163,37 @@ def autoTagWords(scores, words, currentTags, currentUncertainTagIndices):
 # correctly assigns the POS to each word, returns a valid list of lists: [words, tags] where both words and tags are a list
 def checkPOS(contents):
     words, tagsDict = preprocessTerms(contents)
-    assert (len(words) == len(tagsDict["original"]) == len(tagsDict["nltk"])) , "words and tag arrays are not the same length in checkPOS()"
-    originalTags, nltkTags = tagsDict["original"], tagsDict["nltk"]
+    assert (len(words) == len(tagsDict["original"]) == len(
+        tagsDict["nltk"]) == len(tagsDict["spacy"])), "words and tag arrays are not the same length in checkPOS()"
+    originalTags, nltkTags, spacyTags = tagsDict["original"], tagsDict["nltk"], tagsDict["spacy"]
     print(
-        f"SEE HERE: \n\n \t =========== original tags: ============= \n {originalTags} \n\n \t =========== nltk tags: ============= \n {nltkTags}"
+        f"SEE HERE: \n\n \t =========== original tags: ============= \n {originalTags} \n\n \t =========== nltk tags: ============= \n {nltkTags} \n\n \t =========== spacy tags: ============= \n {spacyTags}"
     )
     scores = calculateScores(words, tagsDict)
+    logger.info(f"\n Scores have been calculated. \n {scores} ")
     indices = detectDiscrepencies(scores, THRESHOLD)
     words, updatedTags, uncertainTagIndices = autoTagWords(scores, words, originalTags, indices)
     numberOfUncertainties = len(uncertainTagIndices)
+    logger.info(f" THRESHOLD VALUE of {THRESHOLD} gives us {numberOfUncertainties} uncertainties that require human assistance out of {len(words)}. \n {100 * (numberOfUncertainties / len(words))} % of tagging done by Stanford Tagger needs to be reviewed by a human. ")
     finalisedTags = []
     for idx in range(
-        len(words)
+            len(words)
     ):  # asks for human to check only for the uncertain indices
         currentTag = updatedTags[idx]
         if idx in uncertainTagIndices:
-            wordsBefore, wordsAfter = 0 if idx < 10 else (idx - 10), len(words) if idx >= len(words) - 10 else (idx + 10)
+            wordsBefore, wordsAfter = 0 if idx < 10 else (idx - 10), len(words) if idx >= len(words) - 10 else (
+                        idx + 10)
             currentTerm = "" + words[idx] + "_" + currentTag
             # generates some reference text to help determine the correct tag for that word:
-            #==================================================================================
+            # ==================================================================================
             referenceText = "\n\t\t Here's the nearby text for reference:\n\n ================================ \n\t\t"
             for x in range(wordsBefore, wordsAfter):
                 referenceText += (("{" + words[x] + "}") if idx == x else words[x]) + " "
-            #==================================================================================
+            # ==================================================================================
             finalisedTag = determineCorrectTag(currentTerm, referenceText)
             finalisedTags.append(finalisedTag)
         else:
             finalisedTags.append(currentTag)
-
 
     # print("**** THIS IS FINALISED TAGS ", finalisedTags)
     # print("**** THESE ARE CHANGED TAGS ", tagsChanged)
@@ -212,17 +233,29 @@ def determineCorrectTag(term, referenceText):
             # TODO: figure out how to do the pausing later
             logger.debug("DETECTED CTRL C")
         isValidTag = (userInput == "Y") and validateTag(tag)
-        logging.info('Checked for the word {' + word + '} and the tag {' +tag +'}')
+        logging.info('Checked for the word {' + word + '} and the tag {' + tag + '}')
         if not isValidTag:
             showHelp()
             userInput = input("Enter valid tag:").upper()
-            logging.info('Tag entered: ' + userInput+' for the word ' +word)
+            logging.info('Tag entered: ' + userInput + ' for the word ' + word)
             if userInput not in PosDictionary.keys():
                 continue
             else:
                 tag = PosDictionary.get(userInput)
         tagsChanged.append(tag)
     return tag
+
+
+# compares tag arrs and gives a weighted sum of their matches based on their published frequencies.
+def calculateWeightedSum(tagsDict, idx):
+    stanfordTag = tagsDict["original"][idx]
+    nltkTag = tagsDict["nltk"][idx]
+    spacyTag = tagsDict["spacy"][idx]
+    c0 = 1 * (PublishedAccuracies["stanford"])
+    c1 = (1 if stanfordTag == nltkTag else 0) * (PublishedAccuracies["nltk"])
+    c2 = (1 if stanfordTag == spacyTag else 0) * (PublishedAccuracies["spacy"])
+    return c0 + c1 + c2
+
 
 # input: dictionary of generated Tags
 #  returns a list of scores
@@ -231,22 +264,26 @@ def determineCorrectTag(term, referenceText):
 
 # TODO: make this generalised once we use more than 1 reference models
 def calculateScores(words, generatedTags):
-    stanfordTags, nltkTags = generatedTags["original"], generatedTags["nltk"]
+    stanfordTags, nltkTags, spacyTags = generatedTags["original"], generatedTags["nltk"], generatedTags["spacy"]
     size = len(stanfordTags)
-    assert size == len(nltkTags)
+    assert size == len(nltkTags) == len(spacyTags)
     scores = []
     for idx in range(size):
         word = words[idx].upper()
         if word in SinglishWords:
-            score = -1 # looking at scores array, we can say that - 1 means safe to autocheck without asking the human
+            score = -1  # looking at scores array, we can say that - 1 means safe to autocheck without asking the human
         elif word in PseudoSinglishWords:
-            score = 0 # means there's definitely gonna be some discrepancy
-        else: 
-            score = 0
-            if stanfordTags[idx] == nltkTags[idx]:
-                score = 1  # TODO: do the weighted calculation i(wnith spacy etc)   the next update to this function
+            score = 0  # means there's definitely gonna be some discrepancy
+        else: # actual weighted score calculation
+            # here, my word isn't singlish word nor is it a potentially singlish word. it's proper english.
+            # i have tagged them using 3 models: original, nltk, spacy
+            # generatedTags[nltkTags][x] and generatedTags[spacy][x] they all refer to the same word that has been tagged.
+            # so, to calculate weighted sum for the xth word, we just need to pass in the generated tags and the index
+            # of the word that we are looking at.
+            score = calculateWeightedSum(generatedTags, idx)
         scores.append(score)
     return scores
+
 
 # cleans up the program upon a signal interruption by
 # 1: appending checkedWords and checkedTags to the output file
@@ -275,7 +312,7 @@ def writeToWorkspace(content, workspaceFileName):
 # appends to non-existing / pre-existing output file
 def writeToOutputFile(words, tags):
     outputFile = open(OUTPUT_FILE_NAME, "a+")
-    submissionFile = open(OUTPUT_FILE_NAME + "_submission" , "a+")
+    submissionFile = open(OUTPUT_FILE_NAME + "_submission", "a+")
     size = len(words)
     outputString, submissionString = "\n===================== STARTING LINE =============================\n", "\n"
     for i in range(size):
@@ -286,8 +323,18 @@ def writeToOutputFile(words, tags):
     outputFile.write(outputString)
     submissionFile.write(submissionString)
 
+
 def validateTag(tag):
     return tag in PosDictionary.values()
+
+
+# tagging accuracies of models when input is standard English
+PublishedAccuracies = {
+    "stanford" : 0.9697, # https://tinyurl.com/stanfordTagger-accuracy
+    "nltk": 0.94,
+    "spacy": 0.5
+}
+
 
 PosDictionary = {}
 PosDictionary["1"] = "CC"
@@ -328,27 +375,30 @@ PosDictionary["35"] = "WP$"
 PosDictionary["36"] = "WRB"
 PosDictionary["37"] = "SFP"
 
+
 def showHelp():
     line = "___________________________________________________\n"
-    keys, values = list(PosDictionary.keys()), list(PosDictionary.values())        
+    keys, values = list(PosDictionary.keys()), list(PosDictionary.values())
     message = "\n----- {enter number representing the tag} -------- \n" + line
     leftPtr, rightPtr = 0, len(keys) - 1
-    while(rightPtr >= leftPtr):
+    while (rightPtr >= leftPtr):
         leftKey, leftValue = keys[leftPtr], values[leftPtr]
         rightKey, rightValue = keys[rightPtr], values[rightPtr]
         if leftPtr != rightPtr:
             if rightPtr >= 25:
-                message += (f"{leftKey}: {leftValue} \t\t\t {rightKey}: {rightValue} \n")  # this is just to prettify the printing, purely aesthetic
-            else: 
-                message += (f"{leftKey}: {leftValue} \t\t {rightKey}: {rightValue} \n") 
-        else: 
-            message += (f"{rightKey}: {rightValue} \n") 
-        rightPtr -= 1; leftPtr += 1
+                message += (
+                    f"{leftKey}: {leftValue} \t\t\t {rightKey}: {rightValue} \n")  # this is just to prettify the printing, purely aesthetic
+            else:
+                message += (f"{leftKey}: {leftValue} \t\t {rightKey}: {rightValue} \n")
+        else:
+            message += (f"{rightKey}: {rightValue} \n")
+        rightPtr -= 1;
+        leftPtr += 1
     message += line
     print(message)
 
-# def outputLoggingFile(changedTags):
 
+# def outputLoggingFile(changedTags):
 
 
 endingGreeting = f"""
