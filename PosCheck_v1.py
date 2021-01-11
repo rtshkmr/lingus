@@ -20,10 +20,8 @@ Questions:
     b. How come some words are erroneously joined "generalhospital"?
 
 Todos:
-1. DoubleCheck logging (Ritesh to get up to speed with this)
-2. Fix the duplicated words problem
+1. Fix the duplicated words problem
    - see alyssa's use of the enchant dictionary to filter through for words not in a dictionary
-3.
 
 
 
@@ -53,7 +51,7 @@ logging.basicConfig(filename="logging_output.txt",
 
 # define constants here
 OUTPUT_FILE_NAME = "./output"
-THRESHOLD = 1.5
+THRESHOLD = 3.9
 NUMBER_OF_UNCERTAINTIES = None
 f = Figlet(font="colossal")
 # TODO: import this wordlist from somewhere in the internet. there should be singlish wordlists
@@ -74,17 +72,19 @@ def main():
     logger.debug("\n\n\n>>>>>>>>>>>>>>>>>>>>>> Done Running script <<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
     # note that the input file has to be in the same project directory
 
-# returns an array containing tagging done by spacy
+# returns an array containing tagging done by models available by spacy
 def generateSpacyTags(words):
     prose = ""
     for word in words:
         prose += word + " "
-    tagger = spacy.load("en_core_web_sm")
-    doc = tagger(prose)
-    tags = []
-    for token in doc:
-        tags.append(token.tag_)
-    return tags
+    taggerSM, taggerMD, taggerLG = spacy.load("en_core_web_sm"), spacy.load("en_core_web_md"), spacy.load("en_core_web_lg")
+    sm_doc, md_doc, lg_doc = taggerSM(prose), taggerMD(prose), taggerLG(prose)
+    sm_tags, md_tags, lg_tags = [], [], []
+    for idx in range(len(sm_doc)):
+       sm_tags.append(sm_doc[idx].tag_)
+       md_tags.append(md_doc[idx].tag_)
+       lg_tags.append(lg_doc[idx].tag_)
+    return (sm_tags, md_tags, lg_tags)
 
 
 
@@ -136,7 +136,7 @@ def preprocessTerms(contents):
                 words.append(word)
                 tags["original"].append(originalTag)
     tags["nltk"] = generateNLTKtags(words)
-    tags["spacy"] = generateSpacyTags(words)
+    tags["spacy_sm"], tags["spacy_md"], tags["spacy_lg"] = generateSpacyTags(words)
     # ===============================================================================
     return [words, tags]
 
@@ -164,17 +164,15 @@ def autoTagWords(scores, words, currentTags, currentUncertainTagIndices):
 def checkPOS(contents):
     words, tagsDict = preprocessTerms(contents)
     assert (len(words) == len(tagsDict["original"]) == len(
-        tagsDict["nltk"]) == len(tagsDict["spacy"])), "words and tag arrays are not the same length in checkPOS()"
-    originalTags, nltkTags, spacyTags = tagsDict["original"], tagsDict["nltk"], tagsDict["spacy"]
-    print(
-        f"SEE HERE: \n\n \t =========== original tags: ============= \n {originalTags} \n\n \t =========== nltk tags: ============= \n {nltkTags} \n\n \t =========== spacy tags: ============= \n {spacyTags}"
-    )
+        tagsDict["nltk"]) == len(tagsDict["spacy_sm"])), "words and tag arrays are not the same length in checkPOS()"
+    originalTags, nltkTags, spacyTags_sm, spacyTags_md, spacyTags_ls = \
+        tagsDict["original"], tagsDict["nltk"], tagsDict["spacy_sm"], tagsDict["spacy_md"], tagsDict["spacy_lg"]
     scores = calculateScores(words, tagsDict)
     logger.info(f"\n Scores have been calculated. \n {scores} ")
     indices = detectDiscrepencies(scores, THRESHOLD)
     words, updatedTags, uncertainTagIndices = autoTagWords(scores, words, originalTags, indices)
     numberOfUncertainties = len(uncertainTagIndices)
-    logger.info(f" THRESHOLD VALUE of {THRESHOLD} gives us {numberOfUncertainties} uncertainties that require human assistance out of {len(words)}. \n {100 * (numberOfUncertainties / len(words))} % of tagging done by Stanford Tagger needs to be reviewed by a human. ")
+    logger.info(f" THRESHOLD VALUE of {THRESHOLD} gives us {numberOfUncertainties} uncertainties that require human assistance out of {len(words)} words. \n {100 * (numberOfUncertainties / len(words))} % of tagging done by Stanford Tagger needs to be reviewed by a human. ")
     finalisedTags = []
     for idx in range(
             len(words)
@@ -250,11 +248,15 @@ def determineCorrectTag(term, referenceText):
 def calculateWeightedSum(tagsDict, idx):
     stanfordTag = tagsDict["original"][idx]
     nltkTag = tagsDict["nltk"][idx]
-    spacyTag = tagsDict["spacy"][idx]
+    spacyTag_sm = tagsDict["spacy_sm"][idx]
+    spacyTag_md = tagsDict["spacy_md"][idx]
+    spacyTag_lg = tagsDict["spacy_lg"][idx]
     c0 = 1 * (PublishedAccuracies["stanford"])
     c1 = (1 if stanfordTag == nltkTag else 0) * (PublishedAccuracies["nltk"])
-    c2 = (1 if stanfordTag == spacyTag else 0) * (PublishedAccuracies["spacy"])
-    return c0 + c1 + c2
+    c2 = (1 if stanfordTag == spacyTag_sm else 0) * (PublishedAccuracies["spacy_sm"])
+    c3 = (1 if stanfordTag == spacyTag_md else 0) * (PublishedAccuracies["spacy_md"])
+    c4 = (1 if stanfordTag == spacyTag_lg else 0) * (PublishedAccuracies["spacy_lg"])
+    return c0 + c1 + c2 + c3 + c4
 
 
 # input: dictionary of generated Tags
@@ -264,9 +266,8 @@ def calculateWeightedSum(tagsDict, idx):
 
 # TODO: make this generalised once we use more than 1 reference models
 def calculateScores(words, generatedTags):
-    stanfordTags, nltkTags, spacyTags = generatedTags["original"], generatedTags["nltk"], generatedTags["spacy"]
-    size = len(stanfordTags)
-    assert size == len(nltkTags) == len(spacyTags)
+    size = len(generatedTags["original"])
+    assert size == len(generatedTags["nltk"])
     scores = []
     for idx in range(size):
         word = words[idx].upper()
@@ -275,11 +276,6 @@ def calculateScores(words, generatedTags):
         elif word in PseudoSinglishWords:
             score = 0  # means there's definitely gonna be some discrepancy
         else: # actual weighted score calculation
-            # here, my word isn't singlish word nor is it a potentially singlish word. it's proper english.
-            # i have tagged them using 3 models: original, nltk, spacy
-            # generatedTags[nltkTags][x] and generatedTags[spacy][x] they all refer to the same word that has been tagged.
-            # so, to calculate weighted sum for the xth word, we just need to pass in the generated tags and the index
-            # of the word that we are looking at.
             score = calculateWeightedSum(generatedTags, idx)
         scores.append(score)
     return scores
@@ -329,10 +325,16 @@ def validateTag(tag):
 
 
 # tagging accuracies of models when input is standard English
+# assumptions:
+# -  we have ignored that fact that the testing done to get these accuracy values may/may not have been from the same
+#   benchmarking source.
+# -
 PublishedAccuracies = {
-    "stanford" : 0.9697, # https://tinyurl.com/stanfordTagger-accuracy
-    "nltk": 0.94,
-    "spacy": 0.5
+    "stanford": 0.9697,   # https://tinyurl.com/stanfordTagger-accuracy
+    "nltk": 0.94, # TODO: add link to the published accuracy value for ntlk
+    "spacy_sm": 0.966, # https://github.com/explosion/spacy-models/releases/en_core_web_sm-1.2.0
+    "spacy_md": 0.967, #https://github.com/explosion/spacy-models/releases/en_core_web_md-1.2.0
+    "spacy_lg": 0.9722, #https://github.com/explosion/spacy-models/releases/tag/en_core_web_lg-2.3.1
 }
 
 
