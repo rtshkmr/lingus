@@ -68,3 +68,702 @@
  [4.8149, 0.9697, 1.9367, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 2.8819, 3.8489, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, 1.9419, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, -1, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 3.8489, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, -1, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 2.8819, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 2.8819, 3.8489, -1, 3.8489, 1.9097, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 3.8749] 
 19:08:47,962 logger INFO  THRESHOLD VALUE of 3.9 gives us 44 uncertainties that require human assistance out of 237 words. 
  18.565400843881857 % of tagging done by Stanford Tagger needs to be reviewed by a human. 
+19:31:53,783 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:33:13,835 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:33:31,959 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:34:02,467 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:36:33,771 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:36:50,659 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:37:05,303 logger INFO 
+ Scores have been calculated. 
+ [] 
+19:37:56,421 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:38:10,814 logger INFO 
+ Scores have been calculated. 
+ [] 
+19:38:53,135 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:39:07,56 logger INFO 
+ Scores have been calculated. 
+ [] 
+19:39:33,69 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:39:47,574 logger INFO 
+ Scores have been calculated. 
+ [] 
+19:40:35,821 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:40:49,933 logger INFO 
+ Scores have been calculated. 
+ [] 
+19:41:29,936 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:41:43,919 logger INFO 
+ Scores have been calculated. 
+ [] 
+19:43:02,659 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:43:17,506 logger INFO 
+ Scores have been calculated. 
+ [] 
+19:43:56,250 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:44:23,672 logger INFO 
+ Scores have been calculated. 
+ [] 
+19:47:00,250 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:47:00,268 logger DEBUG >>> wrote to Workspace
+19:47:00,268 logger DEBUG >>> init done
+19:47:11,355 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:47:11,399 logger DEBUG >>> wrote to Workspace
+19:47:11,400 logger DEBUG >>> init done
+19:47:26,312 logger INFO 
+ Scores have been calculated. 
+ [4.8149, 0.9697, 1.9367, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 2.8819, 3.8489, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, 1.9419, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, -1, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 3.8489, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, -1, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 2.8819, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 2.8819, 3.8489, -1, 3.8489, 1.9097, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 3.8749] 
+19:47:26,313 logger INFO  THRESHOLD VALUE of 3.9 gives us 44 uncertainties that require human assistance out of 237 words. 
+ 18.565400843881857 % of tagging done by Stanford Tagger needs to be reviewed by a human. 
+19:47:41,544 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:47:41,575 logger DEBUG >>> wrote to Workspace
+19:47:41,576 logger DEBUG >>> init done
+19:47:56,656 logger INFO 
+ Scores have been calculated. 
+ [4.8149, 0.9697, 1.9367, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 2.8819, 3.8489, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, 1.9419, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, -1, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 3.8489, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, -1, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 2.8819, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 2.8819, 3.8489, -1, 3.8489, 1.9097, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 3.8749] 
+19:47:56,657 logger INFO  THRESHOLD VALUE of 3.9 gives us 44 uncertainties that require human assistance out of 237 words. 
+ 18.565400843881857 % of tagging done by Stanford Tagger needs to be reviewed by a human. 
+19:48:32,170 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:49:58,643 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:52:24,951 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:53:27,242 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:53:52,825 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+19:57:53,411 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+20:01:03,860 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+20:01:46,478 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+20:01:46,480 logger DEBUG >>> wrote to Workspace
+20:01:46,480 logger DEBUG >>> init done
+20:02:28,449 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+20:03:16,72 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+20:07:33,668 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+20:12:40,689 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+21:00:19,507 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+21:00:19,569 logger DEBUG >>> wrote to Workspace
+21:00:19,569 logger DEBUG >>> init done
+21:00:37,569 logger INFO 
+ Scores have been calculated. 
+ [4.8149, 0.9697, 1.9367, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 2.8819, 3.8489, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, 1.9419, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, -1, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 3.8489, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, -1, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 2.8819, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 2.8819, 3.8489, -1, 3.8489, 1.9097, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 3.8749] 
+21:00:37,570 logger INFO  THRESHOLD VALUE of 3.9 gives us 44 uncertainties that require human assistance out of 237 words. 
+ 18.565400843881857 % of tagging done by Stanford Tagger needs to be reviewed by a human. 
+21:03:05,998 root INFO Checked for the word {I.} and the tag {PRP}
+21:03:06,224 root INFO Checked for the word {work} and the tag {VBP}
+21:03:06,405 root INFO Checked for the word {beside} and the tag {IN}
+21:03:06,612 root INFO Checked for the word {beside} and the tag {IN}
+21:03:06,829 root INFO Checked for the word {that} and the tag {DT}
+21:03:07,28 root INFO Checked for the word {I.} and the tag {PRP}
+21:03:07,236 root INFO Checked for the word {left} and the tag {JJ}
+21:03:07,441 root INFO Checked for the word {left} and the tag {JJ}
+21:03:07,628 root INFO Checked for the word {one} and the tag {NN}
+21:03:07,834 root INFO Checked for the word {one} and the tag {CD}
+21:03:08,45 root INFO Checked for the word {t} and the tag {NN}
+21:03:08,267 root INFO Checked for the word {know} and the tag {VB}
+21:03:08,490 root INFO Checked for the word {come} and the tag {VBN}
+21:03:08,688 root INFO Checked for the word {ask} and the tag {VBP}
+21:03:08,906 root INFO Checked for the word {operate} and the tag {VB}
+21:03:09,128 root INFO Checked for the word {one} and the tag {NN}
+21:03:09,335 root INFO Checked for the word {course} and the tag {NN}
+21:03:09,564 root INFO Checked for the word {lah} and the tag {NN}
+21:03:09,781 root INFO Checked for the word {that} and the tag {DT}
+21:03:10,6 root INFO Checked for the word {t} and the tag {NN}
+21:03:10,228 root INFO Checked for the word {know} and the tag {VB}
+21:03:10,453 root INFO Checked for the word {feedback} and the tag {NN}
+21:03:10,668 root INFO Checked for the word {feedback} and the tag {NN}
+21:03:10,895 root INFO Checked for the word {to} and the tag {TO}
+21:03:11,115 root INFO Checked for the word {but} and the tag {CC}
+21:03:11,358 root INFO Checked for the word {think} and the tag {VB}
+21:03:11,558 root INFO Checked for the word {lah} and the tag {JJ}
+21:03:11,798 root INFO Checked for the word {somethingwrong} and the tag {VBG}
+21:03:12,12 root INFO Checked for the word {to} and the tag {TO}
+21:03:12,253 root INFO Checked for the word {generalhospital} and the tag {JJ}
+21:03:12,480 root INFO Checked for the word {there} and the tag {EX}
+21:03:12,718 root INFO Checked for the word {more} and the tag {JJR}
+21:03:12,945 root INFO Checked for the word {on} and the tag {IN}
+21:03:13,168 root INFO Checked for the word {need} and the tag {NN}
+21:03:13,396 root INFO Checked for the word {of} and the tag {IN}
+21:03:13,606 root INFO Checked for the word {course} and the tag {NN}
+21:03:13,818 root INFO Checked for the word {la} and the tag {NNP}
+21:03:14,66 root INFO Checked for the word {better} and the tag {RBR}
+21:03:14,293 root INFO Checked for the word {that} and the tag {WDT}
+21:03:14,502 root INFO Checked for the word {s} and the tag {VBZ}
+21:03:14,737 root INFO Checked for the word {*} and the tag {SYM}
+21:03:14,955 root INFO Checked for the word {chuckle} and the tag {VBP}
+21:03:15,192 root INFO Checked for the word {oh} and the tag {UH}
+21:03:15,410 root INFO Checked for the word {oh} and the tag {UH}
+21:03:15,475 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Done Running script <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+21:43:24,615 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+21:44:08,339 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+21:44:48,21 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+21:56:34,536 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+21:57:04,271 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+22:01:15,427 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+22:01:15,465 logger DEBUG >>> wrote to Workspace
+22:01:15,466 logger DEBUG >>> init done
+22:01:33,823 logger INFO 
+ Scores have been calculated. 
+ [4.8149, 0.9697, 1.9367, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 2.8819, 3.8489, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, 1.9419, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, -1, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 3.8489, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, -1, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 2.8819, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 2.8819, 3.8489, -1, 3.8489, 1.9097, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 3.8749] 
+22:01:33,823 logger INFO  THRESHOLD VALUE of 3.9 gives us 44 uncertainties that require human assistance out of 237 words. 
+ 18.565400843881857 % of tagging done by Stanford Tagger needs to be reviewed by a human. 
+22:01:38,434 root INFO Checked for the word {I.} and the tag {PRP}
+22:01:38,925 root INFO Checked for the word {work} and the tag {VBP}
+22:01:39,435 root INFO Checked for the word {beside} and the tag {IN}
+22:01:39,843 root INFO Checked for the word {beside} and the tag {IN}
+22:01:40,172 root INFO Checked for the word {that} and the tag {DT}
+22:01:40,489 root INFO Checked for the word {I.} and the tag {PRP}
+22:01:40,782 root INFO Checked for the word {left} and the tag {JJ}
+22:01:41,51 root INFO Checked for the word {left} and the tag {JJ}
+22:01:41,300 root INFO Checked for the word {one} and the tag {NN}
+22:01:41,546 root INFO Checked for the word {one} and the tag {CD}
+22:01:41,782 root INFO Checked for the word {t} and the tag {NN}
+22:01:42,4 root INFO Checked for the word {know} and the tag {VB}
+22:01:42,229 root INFO Checked for the word {come} and the tag {VBN}
+22:01:42,457 root INFO Checked for the word {ask} and the tag {VBP}
+22:01:42,684 root INFO Checked for the word {operate} and the tag {VB}
+22:01:42,900 root INFO Checked for the word {one} and the tag {NN}
+22:01:43,124 root INFO Checked for the word {course} and the tag {NN}
+22:01:43,331 root INFO Checked for the word {lah} and the tag {NN}
+22:01:43,566 root INFO Checked for the word {that} and the tag {DT}
+22:01:43,784 root INFO Checked for the word {t} and the tag {NN}
+22:01:44,0 root INFO Checked for the word {know} and the tag {VB}
+22:01:44,230 root INFO Checked for the word {feedback} and the tag {NN}
+22:01:44,467 root INFO Checked for the word {feedback} and the tag {NN}
+22:01:44,694 root INFO Checked for the word {to} and the tag {TO}
+22:01:44,914 root INFO Checked for the word {but} and the tag {CC}
+22:01:45,132 root INFO Checked for the word {think} and the tag {VB}
+22:01:45,359 root INFO Checked for the word {lah} and the tag {JJ}
+22:01:45,585 root INFO Checked for the word {somethingwrong} and the tag {VBG}
+22:01:45,794 root INFO Checked for the word {to} and the tag {TO}
+22:01:46,17 root INFO Checked for the word {generalhospital} and the tag {JJ}
+22:01:46,229 root INFO Checked for the word {there} and the tag {EX}
+22:01:46,466 root INFO Checked for the word {more} and the tag {JJR}
+22:01:46,677 root INFO Checked for the word {on} and the tag {IN}
+22:01:46,935 root INFO Checked for the word {need} and the tag {NN}
+22:01:47,173 root INFO Checked for the word {of} and the tag {IN}
+22:01:47,419 root INFO Checked for the word {course} and the tag {NN}
+22:01:47,671 root INFO Checked for the word {la} and the tag {NNP}
+22:01:47,913 root INFO Checked for the word {better} and the tag {RBR}
+22:01:48,174 root INFO Checked for the word {that} and the tag {WDT}
+22:01:48,412 root INFO Checked for the word {s} and the tag {VBZ}
+22:01:48,651 root INFO Checked for the word {*} and the tag {SYM}
+22:01:48,893 root INFO Checked for the word {chuckle} and the tag {VBP}
+22:01:49,140 root INFO Checked for the word {oh} and the tag {UH}
+22:01:49,373 root INFO Checked for the word {oh} and the tag {UH}
+22:02:11,127 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+22:02:28,310 logger INFO 
+ Scores have been calculated. 
+ [4.8149, 0.9697, 1.9367, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 2.8819, 3.8489, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, 1.9419, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, -1, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 3.8489, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, -1, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 2.8819, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 2.8819, 3.8489, -1, 3.8489, 1.9097, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 3.8749] 
+22:02:28,310 logger INFO  THRESHOLD VALUE of 3.9 gives us 44 uncertainties that require human assistance out of 237 words. 
+ 18.565400843881857 % of tagging done by Stanford Tagger needs to be reviewed by a human. 
+22:02:30,195 root INFO Checked for the word {I.} and the tag {PRP}
+22:02:30,860 root INFO Checked for the word {work} and the tag {VBP}
+22:02:31,382 root INFO Checked for the word {beside} and the tag {IN}
+22:02:31,897 root INFO Checked for the word {beside} and the tag {IN}
+22:02:32,386 root INFO Checked for the word {that} and the tag {DT}
+22:02:32,882 root INFO Checked for the word {I.} and the tag {PRP}
+22:02:33,326 root INFO Checked for the word {left} and the tag {JJ}
+22:02:33,804 root INFO Checked for the word {left} and the tag {JJ}
+22:02:34,315 root INFO Checked for the word {one} and the tag {NN}
+22:02:34,872 root INFO Checked for the word {one} and the tag {CD}
+22:02:35,331 root INFO Checked for the word {t} and the tag {NN}
+22:02:35,830 root INFO Checked for the word {know} and the tag {VB}
+22:02:36,327 root INFO Checked for the word {come} and the tag {VBN}
+22:02:36,807 root INFO Checked for the word {ask} and the tag {VBP}
+22:02:37,313 root INFO Checked for the word {operate} and the tag {VB}
+22:02:37,815 root INFO Checked for the word {one} and the tag {NN}
+22:02:38,286 root INFO Checked for the word {course} and the tag {NN}
+22:02:38,747 root INFO Checked for the word {lah} and the tag {NN}
+22:02:39,226 root INFO Checked for the word {that} and the tag {DT}
+22:02:39,699 root INFO Checked for the word {t} and the tag {NN}
+22:02:40,220 root INFO Checked for the word {know} and the tag {VB}
+22:02:40,804 root INFO Checked for the word {feedback} and the tag {NN}
+22:02:41,318 root INFO Checked for the word {feedback} and the tag {NN}
+22:02:41,793 root INFO Checked for the word {to} and the tag {TO}
+22:02:42,298 root INFO Checked for the word {but} and the tag {CC}
+22:02:42,845 root INFO Checked for the word {think} and the tag {VB}
+22:02:43,401 root INFO Checked for the word {lah} and the tag {JJ}
+22:02:44,375 root INFO Checked for the word {somethingwrong} and the tag {VBG}
+22:02:45,213 root INFO Checked for the word {to} and the tag {TO}
+22:02:46,121 root INFO Checked for the word {generalhospital} and the tag {JJ}
+22:02:46,959 root INFO Checked for the word {there} and the tag {EX}
+22:02:48,605 root INFO Checked for the word {more} and the tag {JJR}
+22:02:49,704 root INFO Checked for the word {on} and the tag {IN}
+22:02:50,698 root INFO Checked for the word {need} and the tag {NN}
+22:02:51,570 root INFO Checked for the word {of} and the tag {IN}
+22:02:52,548 root INFO Checked for the word {course} and the tag {NN}
+22:02:53,475 root INFO Checked for the word {la} and the tag {NNP}
+22:02:54,405 root INFO Checked for the word {better} and the tag {RBR}
+22:02:55,267 root INFO Checked for the word {that} and the tag {WDT}
+22:02:56,178 root INFO Checked for the word {s} and the tag {VBZ}
+22:02:57,59 root INFO Checked for the word {*} and the tag {SYM}
+22:02:58,273 root INFO Checked for the word {chuckle} and the tag {VBP}
+22:02:59,330 root INFO Checked for the word {oh} and the tag {UH}
+22:03:00,331 root INFO Checked for the word {oh} and the tag {UH}
+22:04:36,401 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+22:04:54,85 logger INFO 
+ Scores have been calculated. 
+ [4.8149, 0.9697, 1.9367, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 2.8819, 3.8489, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, 1.9419, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, -1, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 3.8489, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, -1, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 2.8819, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 2.8819, 3.8489, -1, 3.8489, 1.9097, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 3.8749] 
+22:04:54,85 logger INFO  THRESHOLD VALUE of 3.9 gives us 44 uncertainties that require human assistance out of 237 words. 
+ 18.565400843881857 % of tagging done by Stanford Tagger needs to be reviewed by a human. 
+22:04:57,155 root INFO Checked for the word {I.} and the tag {PRP}
+22:04:58,240 root INFO Checked for the word {work} and the tag {VBP}
+22:04:59,306 root INFO Checked for the word {beside} and the tag {IN}
+22:05:03,460 root INFO Checked for the word {beside} and the tag {IN}
+22:05:04,433 root INFO Checked for the word {that} and the tag {DT}
+22:05:05,464 root INFO Checked for the word {I.} and the tag {PRP}
+22:05:06,404 root INFO Checked for the word {left} and the tag {JJ}
+22:05:07,284 root INFO Checked for the word {left} and the tag {JJ}
+22:05:08,133 root INFO Checked for the word {one} and the tag {NN}
+22:05:09,46 root INFO Checked for the word {one} and the tag {CD}
+22:05:10,56 root INFO Checked for the word {t} and the tag {NN}
+22:05:11,395 root INFO Checked for the word {know} and the tag {VB}
+22:05:12,322 root INFO Checked for the word {come} and the tag {VBN}
+22:05:13,139 root INFO Checked for the word {ask} and the tag {VBP}
+22:05:13,960 root INFO Checked for the word {operate} and the tag {VB}
+22:05:14,836 root INFO Checked for the word {one} and the tag {NN}
+22:05:15,762 root INFO Checked for the word {course} and the tag {NN}
+22:05:16,649 root INFO Checked for the word {lah} and the tag {NN}
+22:05:18,394 root INFO Checked for the word {that} and the tag {DT}
+22:05:22,27 root INFO Checked for the word {t} and the tag {NN}
+22:05:23,126 root INFO Checked for the word {know} and the tag {VB}
+22:05:24,434 root INFO Checked for the word {feedback} and the tag {NN}
+22:05:25,407 root INFO Checked for the word {feedback} and the tag {NN}
+22:05:26,375 root INFO Checked for the word {to} and the tag {TO}
+22:05:27,339 root INFO Checked for the word {but} and the tag {CC}
+22:05:28,421 root INFO Checked for the word {think} and the tag {VB}
+22:05:29,299 root INFO Checked for the word {lah} and the tag {JJ}
+22:05:30,127 root INFO Checked for the word {somethingwrong} and the tag {VBG}
+22:05:31,46 root INFO Checked for the word {to} and the tag {TO}
+22:05:31,931 root INFO Checked for the word {generalhospital} and the tag {JJ}
+22:05:32,860 root INFO Checked for the word {there} and the tag {EX}
+22:05:33,775 root INFO Checked for the word {more} and the tag {JJR}
+22:05:34,822 root INFO Checked for the word {on} and the tag {IN}
+22:05:35,642 root INFO Checked for the word {need} and the tag {NN}
+22:05:36,562 root INFO Checked for the word {of} and the tag {IN}
+22:05:37,436 root INFO Checked for the word {course} and the tag {NN}
+22:05:38,326 root INFO Checked for the word {la} and the tag {NNP}
+22:05:39,186 root INFO Checked for the word {better} and the tag {RBR}
+22:05:40,114 root INFO Checked for the word {that} and the tag {WDT}
+22:05:40,938 root INFO Checked for the word {s} and the tag {VBZ}
+22:05:41,791 root INFO Checked for the word {*} and the tag {SYM}
+22:05:42,700 root INFO Checked for the word {chuckle} and the tag {VBP}
+22:05:43,668 root INFO Checked for the word {oh} and the tag {UH}
+22:05:44,533 root INFO Checked for the word {oh} and the tag {UH}
+22:07:09,179 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+22:07:27,78 logger INFO 
+ Scores have been calculated. 
+ [4.8149, 0.9697, 1.9367, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 2.8819, 3.8489, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, 1.9419, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, -1, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 3.8489, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, -1, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 2.8819, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 2.8819, 3.8489, -1, 3.8489, 1.9097, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 3.8749] 
+22:07:27,79 logger INFO  THRESHOLD VALUE of 3.9 gives us 44 uncertainties that require human assistance out of 237 words. 
+ 18.565400843881857 % of tagging done by Stanford Tagger needs to be reviewed by a human. 
+22:07:31,731 root INFO Checked for the word {I.} and the tag {PRP}
+22:07:32,335 root INFO Checked for the word {work} and the tag {VBP}
+22:07:32,950 root INFO Checked for the word {beside} and the tag {IN}
+22:07:33,642 root INFO Checked for the word {beside} and the tag {IN}
+22:07:34,309 root INFO Checked for the word {that} and the tag {DT}
+22:07:35,85 root INFO Checked for the word {I.} and the tag {PRP}
+22:07:35,818 root INFO Checked for the word {left} and the tag {JJ}
+22:07:36,381 root INFO Checked for the word {left} and the tag {JJ}
+22:07:36,893 root INFO Checked for the word {one} and the tag {NN}
+22:07:37,364 root INFO Checked for the word {one} and the tag {CD}
+22:07:37,823 root INFO Checked for the word {t} and the tag {NN}
+22:07:38,284 root INFO Checked for the word {know} and the tag {VB}
+22:07:38,752 root INFO Checked for the word {come} and the tag {VBN}
+22:07:39,187 root INFO Checked for the word {ask} and the tag {VBP}
+22:07:39,669 root INFO Checked for the word {operate} and the tag {VB}
+22:07:40,175 root INFO Checked for the word {one} and the tag {NN}
+22:07:40,642 root INFO Checked for the word {course} and the tag {NN}
+22:07:41,73 root INFO Checked for the word {lah} and the tag {NN}
+22:07:41,532 root INFO Checked for the word {that} and the tag {DT}
+22:07:41,979 root INFO Checked for the word {t} and the tag {NN}
+22:07:42,404 root INFO Checked for the word {know} and the tag {VB}
+22:07:42,834 root INFO Checked for the word {feedback} and the tag {NN}
+22:07:43,309 root INFO Checked for the word {feedback} and the tag {NN}
+22:07:43,726 root INFO Checked for the word {to} and the tag {TO}
+22:07:44,159 root INFO Checked for the word {but} and the tag {CC}
+22:07:44,624 root INFO Checked for the word {think} and the tag {VB}
+22:07:45,58 root INFO Checked for the word {lah} and the tag {JJ}
+22:07:45,525 root INFO Checked for the word {somethingwrong} and the tag {VBG}
+22:07:46,18 root INFO Checked for the word {to} and the tag {TO}
+22:07:46,483 root INFO Checked for the word {generalhospital} and the tag {JJ}
+22:07:47,11 root INFO Checked for the word {there} and the tag {EX}
+22:07:47,550 root INFO Checked for the word {more} and the tag {JJR}
+22:07:48,69 root INFO Checked for the word {on} and the tag {IN}
+22:07:48,635 root INFO Checked for the word {need} and the tag {NN}
+22:07:49,304 root INFO Checked for the word {of} and the tag {IN}
+22:07:50,75 root INFO Checked for the word {course} and the tag {NN}
+22:07:50,863 root INFO Checked for the word {la} and the tag {NNP}
+22:07:51,548 root INFO Checked for the word {better} and the tag {RBR}
+22:07:52,383 root INFO Checked for the word {that} and the tag {WDT}
+22:07:55,26 root INFO Checked for the word {s} and the tag {VBZ}
+22:07:56,438 root INFO Checked for the word {*} and the tag {SYM}
+22:07:58,122 root INFO Checked for the word {chuckle} and the tag {VBP}
+22:07:59,66 root INFO Checked for the word {oh} and the tag {UH}
+22:07:59,977 root INFO Checked for the word {oh} and the tag {UH}
+22:07:59,984 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Done Running script <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+22:15:33,376 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+22:15:50,924 logger INFO 
+ Scores have been calculated. 
+ [4.8149, 0.9697, 1.9367, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 2.8819, 3.8489, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, 1.9419, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, -1, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 3.8489, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, -1, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 2.8819, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 2.8819, 3.8489, -1, 3.8489, 1.9097, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 3.8749] 
+22:15:50,924 logger INFO  THRESHOLD VALUE of 3.9 gives us 44 uncertainties that require human assistance out of 237 words. 
+ 18.565400843881857 % of tagging done by Stanford Tagger needs to be reviewed by a human. 
+22:15:53,189 root INFO Checked for the word {I.} and the tag {PRP}
+22:15:53,419 root INFO Checked for the word {work} and the tag {VBP}
+22:15:53,649 root INFO Checked for the word {beside} and the tag {IN}
+22:15:53,829 root INFO Checked for the word {beside} and the tag {IN}
+22:15:54,37 root INFO Checked for the word {that} and the tag {DT}
+22:15:54,270 root INFO Checked for the word {I.} and the tag {PRP}
+22:15:54,459 root INFO Checked for the word {left} and the tag {JJ}
+22:15:54,649 root INFO Checked for the word {left} and the tag {JJ}
+22:15:54,810 root INFO Checked for the word {one} and the tag {NN}
+22:15:55,4 root INFO Checked for the word {one} and the tag {CD}
+22:15:55,168 root INFO Checked for the word {t} and the tag {NN}
+22:15:55,351 root INFO Checked for the word {know} and the tag {VB}
+22:15:55,544 root INFO Checked for the word {come} and the tag {VBN}
+22:15:55,747 root INFO Checked for the word {ask} and the tag {VBP}
+22:15:55,939 root INFO Checked for the word {operate} and the tag {VB}
+22:15:56,142 root INFO Checked for the word {one} and the tag {NN}
+22:15:56,372 root INFO Checked for the word {course} and the tag {NN}
+22:15:56,570 root INFO Checked for the word {lah} and the tag {NN}
+22:15:56,760 root INFO Checked for the word {that} and the tag {DT}
+22:15:56,963 root INFO Checked for the word {t} and the tag {NN}
+22:15:57,220 root INFO Checked for the word {know} and the tag {VB}
+22:15:57,476 root INFO Checked for the word {feedback} and the tag {NN}
+22:15:57,829 root INFO Checked for the word {feedback} and the tag {NN}
+22:15:58,44 root INFO Tag entered: Y for the word feedback
+22:15:58,244 root INFO Checked for the word {feedback} and the tag {NN}
+22:15:58,490 root INFO Checked for the word {to} and the tag {TO}
+22:15:59,299 root INFO Checked for the word {but} and the tag {CC}
+22:15:59,543 root INFO Checked for the word {think} and the tag {VB}
+22:15:59,755 root INFO Checked for the word {lah} and the tag {JJ}
+22:15:59,971 root INFO Checked for the word {somethingwrong} and the tag {VBG}
+22:16:00,199 root INFO Checked for the word {to} and the tag {TO}
+22:16:00,436 root INFO Checked for the word {generalhospital} and the tag {JJ}
+22:16:00,654 root INFO Checked for the word {there} and the tag {EX}
+22:16:00,890 root INFO Checked for the word {more} and the tag {JJR}
+22:16:01,112 root INFO Checked for the word {on} and the tag {IN}
+22:16:01,341 root INFO Checked for the word {need} and the tag {NN}
+22:16:01,555 root INFO Checked for the word {of} and the tag {IN}
+22:16:01,793 root INFO Checked for the word {course} and the tag {NN}
+22:16:02,1 root INFO Checked for the word {la} and the tag {NNP}
+22:16:02,229 root INFO Checked for the word {better} and the tag {RBR}
+22:16:02,449 root INFO Checked for the word {that} and the tag {WDT}
+22:16:02,677 root INFO Checked for the word {s} and the tag {VBZ}
+22:16:02,890 root INFO Checked for the word {*} and the tag {SYM}
+22:16:03,117 root INFO Checked for the word {chuckle} and the tag {VBP}
+22:16:03,513 root INFO Checked for the word {oh} and the tag {UH}
+22:16:03,878 root INFO Checked for the word {oh} and the tag {UH}
+22:16:03,885 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Done Running script <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+22:17:40,939 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+22:18:00,727 logger INFO 
+ Scores have been calculated. 
+ [4.8149, 0.9697, 1.9367, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 2.8819, 3.8489, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, 1.9419, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8479, -1, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 4.8149, 1.9419, 2.9089, 4.8149, 4.8149, 4.8149, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 3.8489, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 0.9697, 4.8149, -1, 4.8149, 0.9697, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 2.8819, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 1.9097, 4.8149, 4.8149, 2.8819, 3.8489, -1, 3.8489, 1.9097, 3.8749, 4.8149, 4.8149, 0.9697, 1.9097, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 4.8149, 3.8749, 3.8749] 
+22:18:00,728 logger INFO  THRESHOLD VALUE of 3.9 gives us 44 uncertainties that require human assistance out of 237 words. 
+ 18.565400843881857 % of tagging done by Stanford Tagger needs to be reviewed by a human. 
+22:18:15,587 root INFO Checked for the word {I.} and the tag {PRP}
+22:18:15,799 root INFO Checked for the word {work} and the tag {VBP}
+22:18:16,19 root INFO Checked for the word {beside} and the tag {IN}
+22:18:16,226 root INFO Checked for the word {beside} and the tag {IN}
+22:18:16,430 root INFO Checked for the word {that} and the tag {DT}
+22:18:16,640 root INFO Checked for the word {I.} and the tag {PRP}
+22:18:16,847 root INFO Checked for the word {left} and the tag {JJ}
+22:18:17,54 root INFO Checked for the word {left} and the tag {JJ}
+22:18:17,257 root INFO Checked for the word {one} and the tag {NN}
+22:18:17,458 root INFO Checked for the word {one} and the tag {CD}
+22:18:17,681 root INFO Checked for the word {t} and the tag {NN}
+22:18:17,874 root INFO Checked for the word {know} and the tag {VB}
+22:18:18,81 root INFO Checked for the word {come} and the tag {VBN}
+22:18:18,287 root INFO Checked for the word {ask} and the tag {VBP}
+22:18:18,493 root INFO Checked for the word {operate} and the tag {VB}
+22:18:18,699 root INFO Checked for the word {one} and the tag {NN}
+22:18:18,897 root INFO Checked for the word {course} and the tag {NN}
+22:18:19,103 root INFO Checked for the word {lah} and the tag {NN}
+22:18:19,320 root INFO Checked for the word {that} and the tag {DT}
+22:18:19,518 root INFO Checked for the word {t} and the tag {NN}
+22:18:19,733 root INFO Checked for the word {know} and the tag {VB}
+22:18:19,947 root INFO Checked for the word {feedback} and the tag {NN}
+22:18:20,148 root INFO Checked for the word {feedback} and the tag {NN}
+22:18:20,347 root INFO Checked for the word {to} and the tag {TO}
+22:18:20,549 root INFO Checked for the word {but} and the tag {CC}
+22:18:20,756 root INFO Checked for the word {think} and the tag {VB}
+22:18:20,960 root INFO Checked for the word {lah} and the tag {JJ}
+22:18:21,162 root INFO Checked for the word {somethingwrong} and the tag {VBG}
+22:18:21,375 root INFO Checked for the word {to} and the tag {TO}
+22:18:21,594 root INFO Checked for the word {generalhospital} and the tag {JJ}
+22:18:21,820 root INFO Checked for the word {there} and the tag {EX}
+22:18:22,44 root INFO Checked for the word {more} and the tag {JJR}
+22:18:22,266 root INFO Checked for the word {on} and the tag {IN}
+22:18:22,477 root INFO Checked for the word {need} and the tag {NN}
+22:18:22,689 root INFO Checked for the word {of} and the tag {IN}
+22:18:22,901 root INFO Checked for the word {course} and the tag {NN}
+22:18:23,126 root INFO Checked for the word {la} and the tag {NNP}
+22:18:23,328 root INFO Checked for the word {better} and the tag {RBR}
+22:18:23,542 root INFO Checked for the word {that} and the tag {WDT}
+22:18:23,761 root INFO Checked for the word {s} and the tag {VBZ}
+22:18:23,974 root INFO Checked for the word {*} and the tag {SYM}
+22:18:24,202 root INFO Checked for the word {chuckle} and the tag {VBP}
+22:18:24,422 root INFO Checked for the word {oh} and the tag {UH}
+22:18:24,631 root INFO Checked for the word {oh} and the tag {UH}
+22:18:24,635 logger DEBUG 
+
+
+>>>>>>>>>>>>>>>>>>>>>> Done Running script <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+

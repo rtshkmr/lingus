@@ -2,3 +2,4 @@
 ~$oSTags.docx
 venv/Lib/site-packages/
 *.bin
+*.pyc

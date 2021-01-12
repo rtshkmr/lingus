@@ -20,6 +20,7 @@ Questions:
     b. How come some words are erroneously joined "generalhospital"?
 
 Todos:
+0. pass in all the different text files <--- handle multiple files
 1. Fix the duplicated words problem
    - see alyssa's use of the enchant dictionary to filter through for words not in a dictionary
 
@@ -30,6 +31,8 @@ Todos:
 Written by: Alyssa Nah Xiao Ting and Ritesh Kumar
  ============================================== """
 import sys
+from datetime import datetime
+
 import docx2txt
 import os, signal
 import logging
@@ -50,7 +53,6 @@ logging.basicConfig(filename="logging_output.txt",
                     level=logging.DEBUG)
 
 # define constants here
-OUTPUT_FILE_NAME = "./output"
 THRESHOLD = 3.9
 NUMBER_OF_UNCERTAINTIES = None
 f = Figlet(font="colossal")
@@ -64,10 +66,11 @@ def main():
     logger.debug("\n\n\n>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
     # note that the input file has to be in the same project directory
     sourceFileName = sys.argv[1]
-    workspaceFileName = "workspace_" + sourceFileName[:-5] + ".txt"
+    fileTitle = sourceFileName.split(".")[0]
+    workspaceFileName = fileTitle + "_workspace.txt"
     contents = init(sourceFileName, workspaceFileName)
     finalWords, finalTags, stats = checkPOS(contents)
-    writeToOutputFile(finalWords, finalTags)
+    writeToOutputFile(fileTitle, finalWords, finalTags)
     print(endingGreeting + stats)
     logger.debug("\n\n\n>>>>>>>>>>>>>>>>>>>>>> Done Running script <<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
     # note that the input file has to be in the same project directory
@@ -97,16 +100,32 @@ def generateNLTKtags(words):
     return nltkTags
 
 
+
+def getSourceContent(sourceUrl):
+    if(".docx" in sourceUrl):
+        return docx2txt.process(sourceUrl)
+    elif (".txt" in sourceUrl):
+        # TODO: the contractions have an extra backslash, check if this affects anything or can it be ignored.
+        #       because in thefirst place we are ignoring contractions.
+        fo = open(sourceUrl, "r")
+        content = fo.read().replace("\n", " ").replace("\'", " ")
+        return content
+    else:
+         assert False, "no idea what file type this is"
 # returns contents from the workspace if workspace aldy exists, else copies from source to new workspace:
 def init(sourceFileName, workspaceFileName):
     workspaceContent = ""
-    if os.path.isfile(workspaceFileName):
+    sourceUrl = os.path.join(os.getcwd(),"Inputs", sourceFileName)
+    workspaceUrl = os.path.join(os.getcwd(),"Workspaces", workspaceFileName)
+    if os.path.isfile(workspaceUrl):
         # logger.debug("workspace file exists, shall read from it")
-        workspaceContent = open(workspaceFileName, "r").read()
-        sourceContent = docx2txt.process(sourceFileName)
-        workspaceContent = writeToWorkspace(sourceContent, workspaceFileName)
+        workspaceContent = open(workspaceUrl, "r").read()
+    else:
+        sourceContent = getSourceContent(sourceUrl)
+        workspaceContent = writeToWorkspace(sourceContent, workspaceUrl)
         logger.debug(">>> init done")
     return workspaceContent
+
 
 
 # preprocesses the single string of contents and returns the following list: [words, tags]
@@ -290,14 +309,14 @@ def cleanup(checkedWords, checkedTags, uncheckedWords, uncheckedTags):
     for i in range(len(uncheckedWords)):
         remainingContent += str(uncheckedWords[i]) + "_" + str(uncheckedTags[i]) + " "
     writeToWorkspace(
-        remainingContent, workspaceFileName="workspace_PoSTrialText.txt"
+        remainingContent, workspaceUrl="workspace_PoSTrialText.txt"
     )  # TODO: make everythign into a class so that can set the filenames as a class level variable after init
     os.kill(os.getpid(), signal.SIGINT)
 
 
 # writes content to a workspace file. Intentionally overwrites if there's an existing file:
-def writeToWorkspace(content, workspaceFileName):
-    workspaceFile = open(workspaceFileName, "w")
+def writeToWorkspace(content, workspaceUrl):
+    workspaceFile = open(workspaceUrl, "w+")
     # copy over to the new file name:
     workspaceFile.write(content)
     workspaceFile.close()
@@ -306,19 +325,22 @@ def writeToWorkspace(content, workspaceFileName):
 
 
 # appends to non-existing / pre-existing output file
-def writeToOutputFile(words, tags):
-    outputFile = open(OUTPUT_FILE_NAME, "a+")
-    submissionFile = open(OUTPUT_FILE_NAME + "_submission", "a+")
+def writeToOutputFile(fileTitle, words, tags):
+    outputFileUrl, submissionFileUrl =\
+        os.path.join(os.getcwd(),"Outputs",fileTitle + ".txt") , os.path.join(os.getcwd(),"Submissions",fileTitle + ".txt")
+
+    outputFile, submissionFile = open(outputFileUrl, "a+"), open(submissionFileUrl, "a+")
     size = len(words)
-    outputString, submissionString = "\n===================== STARTING LINE =============================\n", "\n"
+    date = datetime.now().isoformat()
+    outputString, submissionString = f"\n===================== { datetime.now().isoformat()} STARTING LINE =============================\n",f"\n========= {datetime.now().isoformat()} START SUBMISSION==========\n"
     for i in range(size):
         word, tag = words[i], tags[i]
         outputEntry, submissionEntry = "[" + str(word) + "_" + str(tag) + "]", str(word) + "_" + str(tag) + " "
         outputString += outputEntry + "\n"
         submissionString += submissionEntry
-    outputFile.write(outputString)
-    submissionFile.write(submissionString)
-
+    outputFile.write(outputString + f"\n======= {datetime.now().isoformat()} ============\n")
+    submissionFile.write(submissionString + f"\n======= {datetime.now().isoformat()} ============\n")
+    outputFile.close(); submissionFile.close()
 
 def validateTag(tag):
     return tag in PosDictionary.values()
