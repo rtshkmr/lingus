@@ -80,13 +80,26 @@ def generateSpacyTags(words):
     prose = ""
     for word in words:
         prose += word + " "
+    prose = prose[:-1] # to remove the extra space at the end of the prose.
     taggerSM, taggerMD, taggerLG = spacy.load("en_core_web_sm"), spacy.load("en_core_web_md"), spacy.load("en_core_web_lg")
     sm_doc, md_doc, lg_doc = taggerSM(prose), taggerMD(prose), taggerLG(prose)
     sm_tags, md_tags, lg_tags = [], [], []
+
+#    observations:
+#    1. sm_doc is of the type spacy.tokens.doc.Doc , which is a container class. see here: https://spacy.io/api/doc
+
+    for idx in range (len(words)):
+        s, w = sm_doc[idx].text, words[idx]
+        if(s != w):
+            print(f"sm_doc's token texti | {s}, corresponding word | {w}")
+
+    print(f"checked, size of sm_doc: {len(sm_doc)}, size of words: {len(words)}")
+
     for idx in range(len(sm_doc)):
        sm_tags.append(sm_doc[idx].tag_)
        md_tags.append(md_doc[idx].tag_)
        lg_tags.append(lg_doc[idx].tag_)
+    assert (len(words) == len(sm_tags) == len(md_tags) == len(lg_tags))
     return (sm_tags, md_tags, lg_tags)
 
 
@@ -191,7 +204,7 @@ def checkPOS(contents):
     indices = detectDiscrepencies(scores, THRESHOLD)
     words, updatedTags, uncertainTagIndices = autoTagWords(scores, words, originalTags, indices)
     numberOfUncertainties = len(uncertainTagIndices)
-    logger.info(f" THRESHOLD VALUE of {THRESHOLD} gives us {numberOfUncertainties} uncertainties that require human assistance out of {len(words)} words. \n {100 * (numberOfUncertainties / len(words))} % of tagging done by Stanford Tagger needs to be reviewed by a human. ")
+    logger.info(f" THRESHOLD VALUE of {THRESHOLD} gives us {numberOfUncertainties} uncertainties that require human assistance out of {len(words)} words. \n {0 if len(words) == 0 else 100 * (numberOfUncertainties / len(words))} % of tagging done by Stanford Tagger needs to be reviewed by a human. ")
     finalisedTags = []
     for idx in range(
             len(words)
