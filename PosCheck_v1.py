@@ -87,18 +87,46 @@ def generateSpacyTags(words):
 
 #    observations:
 #    1. sm_doc is of the type spacy.tokens.doc.Doc , which is a container class. see here: https://spacy.io/api/doc
+#     for idx in range (len(words)):
+#         s, w = sm_doc[idx].text, words[idx]
+#         if(s != w):
+#             print(f"sm_doc's token text | {s}, corresponding word | {w}")
+#     print(f"checked, size of sm_doc: {len(sm_doc)}, size of words: {len(words)}")
 
-    for idx in range (len(words)):
-        s, w = sm_doc[idx].text, words[idx]
-        if(s != w):
-            print(f"sm_doc's token texti | {s}, corresponding word | {w}")
+    # concat the tags, only need to handle the tags array.
+    sm_idx=0
+    for idx in range(len(words)): # guarantee: number of tags evetually will be len(words)
+        # thisToken, nextToken, thirdToken = sm_idx
 
-    print(f"checked, size of sm_doc: {len(sm_doc)}, size of words: {len(words)}")
+        if ("-" in sm_doc[sm_idx + 1].text):
+            nextnextIdx = sm_idx + 2
+            nextIdx = sm_idx + 1
+            newWord = sm_doc[sm_idx].text + sm_doc[nextIdx].text + sm_doc[nextnextIdx].text
+            # Tagging the hyphenated words (from sm_doc, etc) as NLTK tags
+            text = nltk.word_tokenize(newWord)
+            nltkOutput = nltk.pos_tag(text)
+            print(f"nltk out put ofr hyphenated word: {nltkOutput}")
+            for term in nltkOutput:
+                print(f"---------------printing the term..: {term}")
+                sm_tags.append(term[1])
+                md_tags.append(term[1])
+                lg_tags.append(term[1])
+            sm_idx += 2
+            print(f"*****-----looking at sm_idx {sm_idx} & idx {idx}")
+        else:
+            print(f"-----looking at : {sm_doc[sm_idx]} at sm_idx {sm_idx} & idx {idx}")
+            sm_tags.append(sm_doc[sm_idx].tag_)
+            md_tags.append(md_doc[sm_idx].tag_)
+            lg_tags.append(lg_doc[sm_idx].tag_)
+        sm_idx += 1
 
-    for idx in range(len(sm_doc)):
-       sm_tags.append(sm_doc[idx].tag_)
-       md_tags.append(md_doc[idx].tag_)
-       lg_tags.append(lg_doc[idx].tag_)
+
+    # concat the tags, only need to handle the tags array.
+    # for idx in range(len(words)):
+    #         sm_tags.append(sm_doc[idx].tag_)
+    #         md_tags.append(md_doc[idx].tag_)
+    #         lg_tags.append(lg_doc[idx].tag_)
+
     assert (len(words) == len(sm_tags) == len(md_tags) == len(lg_tags))
     return (sm_tags, md_tags, lg_tags)
 
