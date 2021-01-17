@@ -94,38 +94,59 @@ def generateSpacyTags(words):
 #     print(f"checked, size of sm_doc: {len(sm_doc)}, size of words: {len(words)}")
 
     # concat the tags, only need to handle the tags array.
-    sm_idx=0
-    for idx in range(len(words)): # guarantee: number of tags evetually will be len(words)
-        # thisToken, nextToken, thirdToken = sm_idx
-
-        if ("-" in sm_doc[sm_idx + 1].text):
-            nextnextIdx = sm_idx + 2
-            nextIdx = sm_idx + 1
-            newWord = sm_doc[sm_idx].text + sm_doc[nextIdx].text + sm_doc[nextnextIdx].text
-            # Tagging the hyphenated words (from sm_doc, etc) as NLTK tags
-            text = nltk.word_tokenize(newWord)
-            nltkOutput = nltk.pos_tag(text)
-            print(f"nltk out put ofr hyphenated word: {nltkOutput}")
-            for term in nltkOutput:
-                print(f"---------------printing the term..: {term}")
-                sm_tags.append(term[1])
-                md_tags.append(term[1])
-                lg_tags.append(term[1])
-            sm_idx += 2
-            print(f"*****-----looking at sm_idx {sm_idx} & idx {idx}")
+    sm_idx, word_idx = 0 , 0
+    while(word_idx <= len(words) and sm_idx < len(sm_doc)) :
+        currentToken = sm_doc[sm_idx]
+        isFirstOrLast = sm_idx == len(sm_doc) or 0
+        if(currentToken.text == "-" and not isFirstOrLast): #  .... last few words -
+            prevToken, nextToken = sm_doc[sm_idx - 1] , sm_doc[sm_idx + 1]
+            concatenatedWord = prevToken.text + currentToken.text + nextToken.text
+            nltkTag = nltk.pos_tag(nltk.word_tokenize(concatenatedWord))[0][1]
+            sm_tags.pop(); md_tags.pop(); lg_tags.pop()
+            sm_tags.append(nltkTag), md_tags.append(nltkTag), lg_tags.append(nltkTag)
+            sm_idx += 1
         else:
-            print(f"-----looking at : {sm_doc[sm_idx]} at sm_idx {sm_idx} & idx {idx}")
             sm_tags.append(sm_doc[sm_idx].tag_)
             md_tags.append(md_doc[sm_idx].tag_)
             lg_tags.append(lg_doc[sm_idx].tag_)
-        sm_idx += 1
+        sm_idx += 1; word_idx += 1  # increment both pointers by 1 for the next iter of while loop
 
 
-    # concat the tags, only need to handle the tags array.
-    # for idx in range(len(words)):
-    #         sm_tags.append(sm_doc[idx].tag_)
-    #         md_tags.append(md_doc[idx].tag_)
-    #         lg_tags.append(lg_doc[idx].tag_)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #while(word_idx < len(words) and sm_idx + 2 < len(sm_doc)):
+    # for idx in range(len(words)): # guarantee: number of tags evetually will be len(words)
+    #    firstToken, secondToken, thirdToken = sm_doc[sm_idx], sm_doc[sm_idx+1], sm_doc[sm_idx+2] # todo: sm_doc might have index out of bounds because of this, the situation is when there are no hyphenated words at all
+    #    if ("-" == secondToken.text): # todo: check if they
+    #        concatenatedWord = firstToken.text + secondToken.text + thirdToken.text
+    #        # Tagging the hyphenated words (from sm_doc, etc) as NLTK tags
+    #        nltkOutput = nltk.pos_tag(nltk.word_tokenize(concatenatedWord))
+    #        print(f"nltk out put for hyphenated word: {nltkOutput}")
+    #        sm_tags.append(nltkOutput[0][1])
+    #        md_tags.append(nltkOutput[0][1])
+    #        lg_tags.append(nltkOutput[0][1])
+    #        sm_idx += 2 # skip sm_pointer by 2 if it's a hyphenated term
+    #        print(f"*****-----looking at sm_idx {sm_idx} & idx {word_idx}")
+    #    else: # the term is not concatenated
+    #        print(f"-----looking at : {sm_doc[sm_idx]} at sm_idx {sm_idx} & idx {word_idx}")
+    #        sm_tags.append(sm_doc[sm_idx].tag_)
+    #        md_tags.append(md_doc[sm_idx].tag_)
+    #        lg_tags.append(lg_doc[sm_idx].tag_)
+    #    sm_idx += 1
+    #    word_idx += 1
 
     assert (len(words) == len(sm_tags) == len(md_tags) == len(lg_tags))
     return (sm_tags, md_tags, lg_tags)
