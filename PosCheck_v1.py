@@ -40,12 +40,7 @@ import nltk
 import spacy
 from pyfiglet import Figlet
 
-# sp = spacy.load('en_core_web_sm')
-
 logger = logging.getLogger("logger")
-# logger.setLevel(logging.DEBUG)
-# logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
-
 logging.basicConfig(filename="logging_output.txt",
                     filemode='a+',
                     format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
@@ -85,17 +80,11 @@ def generateSpacyTags(words):
     sm_doc, md_doc, lg_doc = taggerSM(prose), taggerMD(prose), taggerLG(prose)
     sm_tags, md_tags, lg_tags = [], [], []
 
-#    observations:
-#    1. sm_doc is of the type spacy.tokens.doc.Doc , which is a container class. see here: https://spacy.io/api/doc
-#     for idx in range (len(words)):
-#         s, w = sm_doc[idx].text, words[idx]
-#         if(s != w):
-#             print(f"sm_doc's token text | {s}, corresponding word | {w}")
-#     print(f"checked, size of sm_doc: {len(sm_doc)}, size of words: {len(words)}")
-
     # concat the tags, only need to handle the tags array.
     sm_idx, word_idx = 0 , 0
-    while(word_idx <= len(words) and sm_idx < len(sm_doc)) :
+    generatedTokens = []
+    # while(word_idx < len(words) and sm_idx < len(sm_doc)) :
+    while (sm_idx < len(sm_doc)):
         currentToken = sm_doc[sm_idx]
         isFirstOrLast = sm_idx == len(sm_doc) or 0
         if(currentToken.text == "-" and not isFirstOrLast): #  .... last few words -
@@ -103,55 +92,18 @@ def generateSpacyTags(words):
             concatenatedWord = prevToken.text + currentToken.text + nextToken.text
             nltkTag = nltk.pos_tag(nltk.word_tokenize(concatenatedWord))[0][1]
             sm_tags.pop(); md_tags.pop(); lg_tags.pop()
+            generatedTokens.pop()
+            generatedTokens.append(concatenatedWord)
             sm_tags.append(nltkTag), md_tags.append(nltkTag), lg_tags.append(nltkTag)
             sm_idx += 1
         else:
+            generatedTokens.append(sm_doc[sm_idx].text)
             sm_tags.append(sm_doc[sm_idx].tag_)
             md_tags.append(md_doc[sm_idx].tag_)
             lg_tags.append(lg_doc[sm_idx].tag_)
         sm_idx += 1; word_idx += 1  # increment both pointers by 1 for the next iter of while loop
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    #while(word_idx < len(words) and sm_idx + 2 < len(sm_doc)):
-    # for idx in range(len(words)): # guarantee: number of tags evetually will be len(words)
-    #    firstToken, secondToken, thirdToken = sm_doc[sm_idx], sm_doc[sm_idx+1], sm_doc[sm_idx+2] # todo: sm_doc might have index out of bounds because of this, the situation is when there are no hyphenated words at all
-    #    if ("-" == secondToken.text): # todo: check if they
-    #        concatenatedWord = firstToken.text + secondToken.text + thirdToken.text
-    #        # Tagging the hyphenated words (from sm_doc, etc) as NLTK tags
-    #        nltkOutput = nltk.pos_tag(nltk.word_tokenize(concatenatedWord))
-    #        print(f"nltk out put for hyphenated word: {nltkOutput}")
-    #        sm_tags.append(nltkOutput[0][1])
-    #        md_tags.append(nltkOutput[0][1])
-    #        lg_tags.append(nltkOutput[0][1])
-    #        sm_idx += 2 # skip sm_pointer by 2 if it's a hyphenated term
-    #        print(f"*****-----looking at sm_idx {sm_idx} & idx {word_idx}")
-    #    else: # the term is not concatenated
-    #        print(f"-----looking at : {sm_doc[sm_idx]} at sm_idx {sm_idx} & idx {word_idx}")
-    #        sm_tags.append(sm_doc[sm_idx].tag_)
-    #        md_tags.append(md_doc[sm_idx].tag_)
-    #        lg_tags.append(lg_doc[sm_idx].tag_)
-    #    sm_idx += 1
-    #    word_idx += 1
-
     assert (len(words) == len(sm_tags) == len(md_tags) == len(lg_tags))
     return (sm_tags, md_tags, lg_tags)
-
-
 
 # returns an array containing NLTK tags
 def generateNLTKtags(words):
@@ -160,8 +112,6 @@ def generateNLTKtags(words):
     for term in nltkOutput:
         nltkTags.append(term[1])  # nb: nltk output is an array of tuples that's why nltkOutput: [(<word>_<tag>), etc..]
     return nltkTags
-
-
 
 def getSourceContent(sourceUrl):
     if(".docx" in sourceUrl):
@@ -176,7 +126,6 @@ def getSourceContent(sourceUrl):
          assert False, "no idea what file type this is"
 # returns contents from the workspace if workspace aldy exists, else copies from source to new workspace:
 def init(sourceFileName, workspaceFileName):
-    workspaceContent = ""
     sourceUrl = os.path.join(os.getcwd(),"Inputs", sourceFileName)
     workspaceUrl = os.path.join(os.getcwd(),"Workspaces", workspaceFileName)
     if os.path.isfile(workspaceUrl):
@@ -187,8 +136,6 @@ def init(sourceFileName, workspaceFileName):
         workspaceContent = writeToWorkspace(sourceContent, workspaceUrl)
         logger.debug(">>> init done")
     return workspaceContent
-
-
 
 # preprocesses the single string of contents and returns the following list: [words, tags]
 #   where words is a list of words [w1, w2, w3,...]
@@ -209,18 +156,13 @@ def preprocessTerms(contents):
             word, originalTag = splitTerm[0], splitTerm[1]
             # add in a check the tag should be valid
             if validateTag(originalTag):
-                # logger.debug(
-                #     "iteration #%s with the term %s gives the word %s and has the tag %s"
-                #     % (i, term, word, originalTag)
-                # )
-                # separated words and tags into different arrays
+               # separated words and tags into different arrays
                 words.append(word)
                 tags["original"].append(originalTag)
     tags["nltk"] = generateNLTKtags(words)
     tags["spacy_sm"], tags["spacy_md"], tags["spacy_lg"] = generateSpacyTags(words)
     # ===============================================================================
     return [words, tags]
-
 
 # auto tags the confirmed singlish words and retuns the updated tags and updatedUncertainTagIndices
 def autoTagWords(scores, words, currentTags, currentUncertainTagIndices):
@@ -239,7 +181,6 @@ def autoTagWords(scores, words, currentTags, currentUncertainTagIndices):
                 updatedUncertainTagIndices.remove(idx)
         updatedTags.append(updatedTag)
     return words, updatedTags, updatedUncertainTagIndices
-
 
 # correctly assigns the POS to each word, returns a valid list of lists: [words, tags] where both words and tags are a list
 def checkPOS(contents):
@@ -274,8 +215,6 @@ def checkPOS(contents):
         else:
             finalisedTags.append(currentTag)
 
-    # print("**** THIS IS FINALISED TAGS ", finalisedTags)
-    # print("**** THESE ARE CHANGED TAGS ", tagsChanged)
     stats = f"\n\nThe human was involved for {str(numberOfUncertainties)} times for {len(words)} valid terms."
     return (words, finalisedTags, stats)
 
@@ -291,7 +230,6 @@ def detectDiscrepencies(scores, threshold):
         if score < threshold:
             discrepencies.append(idx)
     return discrepencies  # list of index for humanPrompt to execute on
-
 
 # asks human what the correct tag should be(<word>_<tag>) because a discrepancy has been found
 # returns the correct tag for that particular word
