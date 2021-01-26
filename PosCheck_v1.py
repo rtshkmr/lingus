@@ -30,14 +30,17 @@ Todos:
 
 Written by: Alyssa Nah Xiao Ting and Ritesh Kumar
  ============================================== """
+import logging
+import os
+import signal
 import sys
 from datetime import datetime
 
+import docx.enum.text
 import docx2txt
-import os, signal
-import logging
 import nltk
 import spacy
+from docx import Document
 from pyfiglet import Figlet
 
 logger = logging.getLogger("logger")
@@ -57,7 +60,34 @@ PseudoSinglishWords = ["ONE", "WHAT"]
 tagsChanged = []
 
 
+def foo():
+    sourceFileName = "./Inputs/debug.docx"
+    target = "fuck"
+    # test out the instructions here first
+    doc = Document(sourceFileName)
+    for paragraph in doc.paragraphs:
+        for run in paragraph.runs:
+            print(run.text)
+        if target in paragraph.text:
+            for run in paragraph.runs:
+                print(run.text)
+                #if target in run.text:
+                   #  x = run.text.split(target)
+                #    run.clear()
+                    #for i in range(len(x) - 1):
+                    #    run.add_text(x[i])
+                    #    run.add_text(target)
+                    #    run.font.highlight_color = docx.enum.text.WD_COLOR.YELLOW
+
+    doc.save("fuckme.docx")
+    return
+
+
 def main():
+    foo()
+    return
+
+
     logger.debug("\n\n\n>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
     # note that the input file has to be in the same project directory
     sourceFileName = sys.argv[1]
