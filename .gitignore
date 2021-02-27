@@ -3,3 +3,4 @@
 venv/Lib/site-packages/
 *.bin
 *.pyc
+.idea/codeStyles/

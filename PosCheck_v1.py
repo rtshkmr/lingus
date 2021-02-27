@@ -58,6 +58,12 @@ f = Figlet(font="colossal")
 SinglishWords = ["LA", "LAH", "LOR", "AH", "MEH", "LEH", "HOR"]
 PseudoSinglishWords = ["ONE", "WHAT"]
 tagsChanged = []
+SINGLISH_SCORE = -1
+PSEUDOSINGLISH_SCORE = 0
+SINGLISH_HIGHLIGHT_COLOUR = docx.enum.text.WD_COLOR.TURQUOISE
+PSEUDOSINGLISH_HIGHLIGHT_COLOUR = docx.enum.text.WD_COLOR.DARK_YELLOW
+UNCERTAIN_HIGHLIGHT_COLOUR = docx.enum.text.WD_COLOR.YELLOW
+DESTINATION_FILE_PATH = "./Outputs/highlight_testing.docx"
 
 
 def foo():
@@ -84,10 +90,6 @@ def foo():
 
 
 def main():
-    foo()
-    return
-
-
     logger.debug("\n\n\n>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
     # note that the input file has to be in the same project directory
     sourceFileName = sys.argv[1]
@@ -95,10 +97,12 @@ def main():
     workspaceFileName = fileTitle + "_workspace.txt"
     contents = init(sourceFileName, workspaceFileName)
     finalWords, finalTags, stats = checkPOS(contents)
+    """
     writeToOutputFile(fileTitle, finalWords, finalTags)
     print(endingGreeting + stats)
     logger.debug("\n\n\n>>>>>>>>>>>>>>>>>>>>>> Done Running script <<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
     # note that the input file has to be in the same project directory
+    """
 
 # returns an array containing tagging done by models available by spacy
 def generateSpacyTags(words):
@@ -194,7 +198,12 @@ def preprocessTerms(contents):
     # ===============================================================================
     return [words, tags]
 
-# auto tags the confirmed singlish words and retuns the updated tags and updatedUncertainTagIndices
+
+
+
+# auto tags the confirmed singlish words and retuns the updated tags and updatedUncertainTagIndices. singlish words will have SFP tagging
+# TODO: this needs to be changed because we assumed that the tag for every singlish word will be constant. This is
+#       not true because things like "lah" can have multiple grammatical meanings.
 def autoTagWords(scores, words, currentTags, currentUncertainTagIndices):
     updatedTags, updatedUncertainTagIndices = [], currentUncertainTagIndices
     print(f" SEE HERE scores length: {len(scores)}, words length: {len(words)},tags length: {len(currentTags)}")
@@ -212,6 +221,33 @@ def autoTagWords(scores, words, currentTags, currentUncertainTagIndices):
         updatedTags.append(updatedTag)
     return words, updatedTags, updatedUncertainTagIndices
 
+
+#TODO: replace the other output file shit.
+def writeToDocx(scores, words, tagsDict):
+    document = Document()
+    p = document.add_paragraph("")
+
+    for idx in range(range(len(words))):
+        score = scores[idx]
+        currentTag = tagsDict["original"][idx]
+        word = words[idx]
+        term = word + currentTag
+
+        if score == SINGLISH_SCORE: #-1
+            p.add_run(term).font.highlight_color = SINGLISH_HIGHLIGHT_COLOUR
+        elif score == PSEUDOSINGLISH_SCORE: #0
+            p.add_run(term).font.highlight_color = PSEUDOSINGLISH_HIGHLIGHT_COLOUR
+        elif score > PSEUDOSINGLISH_SCORE and score < THRESHOLD:
+            p.add_run(term).font.highlight_color = UNCERTAIN_HIGHLIGHT_COLOUR
+        else:
+            p.add_run(term)
+        p.add_run(" ")
+    document.save(DESTINATION_FILE_PATH)
+    return
+
+
+
+
 # correctly assigns the POS to each word, returns a valid list of lists: [words, tags] where both words and tags are a list
 def checkPOS(contents):
     words, tagsDict = preprocessTerms(contents)
@@ -221,32 +257,41 @@ def checkPOS(contents):
         tagsDict["original"], tagsDict["nltk"], tagsDict["spacy_sm"], tagsDict["spacy_md"], tagsDict["spacy_lg"]
     scores = calculateScores(words, tagsDict)
     logger.info(f"\n Scores have been calculated. \n {scores} ")
-    indices = detectDiscrepencies(scores, THRESHOLD)
-    words, updatedTags, uncertainTagIndices = autoTagWords(scores, words, originalTags, indices)
-    numberOfUncertainties = len(uncertainTagIndices)
-    logger.info(f" THRESHOLD VALUE of {THRESHOLD} gives us {numberOfUncertainties} uncertainties that require human assistance out of {len(words)} words. \n {0 if len(words) == 0 else 100 * (numberOfUncertainties / len(words))} % of tagging done by Stanford Tagger needs to be reviewed by a human. ")
-    finalisedTags = []
-    for idx in range(
-            len(words)
-    ):  # asks for human to check only for the uncertain indices
-        currentTag = updatedTags[idx]
-        if idx in uncertainTagIndices:
-            wordsBefore, wordsAfter = 0 if idx < 10 else (idx - 10), len(words) if idx >= len(words) - 10 else (
-                        idx + 10)
-            currentTerm = "" + words[idx] + "_" + currentTag
-            # generates some reference text to help determine the correct tag for that word:
-            # ==================================================================================
-            referenceText = "\n\t\t Here's the nearby text for reference:\n\n ================================ \n\t\t"
-            for x in range(wordsBefore, wordsAfter):
-                referenceText += (("{" + words[x] + "}") if idx == x else words[x]) + " "
-            # ==================================================================================
-            finalisedTag = determineCorrectTag(currentTerm, referenceText)
-            finalisedTags.append(finalisedTag)
-        else:
-            finalisedTags.append(currentTag)
+    writeToDocx(scores, words, tagsDict)
 
-    stats = f"\n\nThe human was involved for {str(numberOfUncertainties)} times for {len(words)} valid terms."
-    return (words, finalisedTags, stats)
+    """
+        suspect_indices = detectDiscrepencies(scores, THRESHOLD)
+        # indices ref to things with discrepancies:
+
+
+
+        words, updatedTags, uncertainTagIndices = autoTagWords(scores, words, originalTags, suspect_indices)
+        numberOfUncertainties = len(uncertainTagIndices)
+        logger.info(f" THRESHOLD VALUE of {THRESHOLD} gives us {numberOfUncertainties} uncertainties that require human assistance out of {len(words)} words. \n {0 if len(words) == 0 else 100 * (numberOfUncertainties / len(words))} % of tagging done by Stanford Tagger needs to be reviewed by a human. ")
+        finalisedTags = []
+        for idx in range(
+                len(words)
+        ):  # asks for human to check only for the uncertain indices
+            currentTag = updatedTags[idx]
+            if idx in uncertainTagIndices:
+                wordsBefore, wordsAfter = 0 if idx < 10 else (idx - 10), len(words) if idx >= len(words) - 10 else (
+                            idx + 10)
+                currentTerm = "" + words[idx] + "_" + currentTag
+                # TODO: abstract this reference part out to reduce clutter here
+                # generates some reference text to help determine the correct tag for that word:
+                # ==================================================================================
+                referenceText = "\n\t\t Here's the nearby text for reference:\n\n ================================ \n\t\t"
+                for x in range(wordsBefore, wordsAfter):
+                    referenceText += (("{" + words[x] + "}") if idx == x else words[x]) + " "
+                # ==================================================================================
+                finalisedTag = determineCorrectTag(currentTerm, referenceText)
+                finalisedTags.append(finalisedTag)
+            else:
+                finalisedTags.append(currentTag)
+
+        stats = f"\n\nThe human was involved for {str(numberOfUncertainties)} times for {len(words)} valid terms."
+        return (words, finalisedTags, stats)
+    """
 
 
 # determines which scores are too low, and judges that as a discrepency
@@ -321,9 +366,9 @@ def calculateScores(words, generatedTags):
     for idx in range(size):
         word = words[idx].upper()
         if word in SinglishWords:
-            score = -1  # looking at scores array, we can say that - 1 means safe to autocheck without asking the human
+            score = SINGLISH_SCORE  # looking at scores array, we can say that - 1 means safe to autocheck without asking the human
         elif word in PseudoSinglishWords:
-            score = 0  # means there's definitely gonna be some discrepancy
+            score = PSEUDOSINGLISH_SCORE  # means there's definitely gonna be some discrepancy
         else: # actual weighted score calculation
             score = calculateWeightedSum(generatedTags, idx)
         scores.append(score)
