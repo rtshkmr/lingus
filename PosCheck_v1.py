@@ -61,32 +61,10 @@ tagsChanged = []
 SINGLISH_SCORE = -1
 PSEUDOSINGLISH_SCORE = 0
 SINGLISH_HIGHLIGHT_COLOUR = docx.enum.text.WD_COLOR.TURQUOISE
-PSEUDOSINGLISH_HIGHLIGHT_COLOUR = docx.enum.text.WD_COLOR.DARK_YELLOW
+PSEUDOSINGLISH_HIGHLIGHT_COLOUR = docx.enum.text.WD_COLOR.PINK
 UNCERTAIN_HIGHLIGHT_COLOUR = docx.enum.text.WD_COLOR.YELLOW
 DESTINATION_FILE_PATH = "./Outputs/highlight_testing.docx"
 
-
-def foo():
-    sourceFileName = "./Inputs/debug.docx"
-    target = "fuck"
-    # test out the instructions here first
-    doc = Document(sourceFileName)
-    for paragraph in doc.paragraphs:
-        for run in paragraph.runs:
-            print(run.text)
-        if target in paragraph.text:
-            for run in paragraph.runs:
-                print(run.text)
-                #if target in run.text:
-                   #  x = run.text.split(target)
-                #    run.clear()
-                    #for i in range(len(x) - 1):
-                    #    run.add_text(x[i])
-                    #    run.add_text(target)
-                    #    run.font.highlight_color = docx.enum.text.WD_COLOR.YELLOW
-
-    doc.save("fuckme.docx")
-    return
 
 
 def main():
@@ -96,7 +74,8 @@ def main():
     fileTitle = sourceFileName.split(".")[0]
     workspaceFileName = fileTitle + "_workspace.txt"
     contents = init(sourceFileName, workspaceFileName)
-    finalWords, finalTags, stats = checkPOS(contents)
+    #finalWords, finalTags, stats = checkPOS(contents)
+    checkPOS(contents)
     """
     writeToOutputFile(fileTitle, finalWords, finalTags)
     print(endingGreeting + stats)
@@ -227,11 +206,11 @@ def writeToDocx(scores, words, tagsDict):
     document = Document()
     p = document.add_paragraph("")
 
-    for idx in range(range(len(words))):
+    for idx in range(len(words)):
         score = scores[idx]
         currentTag = tagsDict["original"][idx]
         word = words[idx]
-        term = word + currentTag
+        term = word + "_" +  currentTag
 
         if score == SINGLISH_SCORE: #-1
             p.add_run(term).font.highlight_color = SINGLISH_HIGHLIGHT_COLOUR
