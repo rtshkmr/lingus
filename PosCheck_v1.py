@@ -24,10 +24,6 @@ Todos:
 1. Fix the duplicated words problem
    - see alyssa's use of the enchant dictionary to filter through for words not in a dictionary
 
-
-
-
-
 Written by: Alyssa Nah Xiao Ting and Ritesh Kumar
  ============================================== """
 import logging
@@ -190,8 +186,7 @@ def autoTagWords(scores, words, currentTags, currentUncertainTagIndices):
     for idx in range(len(words)):
         word, score, updatedTag = words[idx], scores[idx], currentTags[idx]
         # autoTagsSinglish words:
-        if (
-                word in SinglishWords and score == -1):  # just being extra safe, could have just iterated thorugh scores without looking thru any of the words actually TODO: consider optimising this
+        if (word in SinglishWords and score == -1):  # just being extra safe, could have just iterated thorugh scores without looking thru any of the words actually TODO: consider optimising this
             # autotag
             updatedTag = "SFP"
             # remove from uncertainTagIndices if the idx has been flagged
@@ -239,10 +234,10 @@ def checkPOS(contents):
     writeToDocx(scores, words, tagsDict)
 
     """
+    # code here involves manually asking for human input for the terms that have undesirable level of discrepancy 
+    # amongst the various other nlp tokenizing models used (stanford, nltk...) 
         suspect_indices = detectDiscrepencies(scores, THRESHOLD)
         # indices ref to things with discrepancies:
-
-
 
         words, updatedTags, uncertainTagIndices = autoTagWords(scores, words, originalTags, suspect_indices)
         numberOfUncertainties = len(uncertainTagIndices)
@@ -364,7 +359,7 @@ def cleanup(checkedWords, checkedTags, uncheckedWords, uncheckedTags):
         remainingContent += str(uncheckedWords[i]) + "_" + str(uncheckedTags[i]) + " "
     writeToWorkspace(
         remainingContent, workspaceUrl="workspace_PoSTrialText.txt"
-    )  # TODO: make everythign into a class so that can set the filenames as a class level variable after init
+    )  # TODO: make everything into a class so that can set the filenames as a class level variable after init
     os.kill(os.getpid(), signal.SIGINT)
 
 
@@ -413,6 +408,9 @@ PublishedAccuracies = {
     "spacy_lg": 0.9722, #https://github.com/explosion/spacy-models/releases/tag/en_core_web_lg-2.3.1
 }
 
+
+
+# TODO:  init this dictionary properly please.
 
 PosDictionary = {}
 PosDictionary["1"] = "CC"
