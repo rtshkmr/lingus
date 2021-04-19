@@ -47,7 +47,8 @@ logging.basicConfig(filename="logging_output.txt",
                     level=logging.DEBUG)
 
 # define constants here
-THRESHOLD = 3.9
+global THRESHOLD
+NUM_MODELS_USED = 2 # change this based on how many other models are being used.
 NUMBER_OF_UNCERTAINTIES = None
 f = Figlet(font="colossal")
 # TODO: import this wordlist from somewhere in the internet. there should be singlish wordlists
@@ -67,6 +68,9 @@ def main():
     logger.debug("\n\n\n>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
     # note that the input file has to be in the same project directory
     sourceFileName = sys.argv[1]
+    desiredPercentage = float(sys.argv[2])
+    global THRESHOLD
+    THRESHOLD = (desiredPercentage / 100.0) * NUM_MODELS_USED
     fileTitle = sourceFileName.split(".")[0]
     workspaceFileName = fileTitle + "_workspace.txt"
     contents = init(sourceFileName, workspaceFileName)
@@ -133,7 +137,9 @@ def getSourceContent(sourceUrl):
         return content
     else:
          assert False, "no idea what file type this is"
-# returns contents from the workspace if workspace aldy exists, else copies from source to new workspace:
+
+# returns contents from the workspace if workspace aldy exists, else copies from source to new workspace. This is
+# to prevent modifying the source directly:
 def init(sourceFileName, workspaceFileName):
     sourceUrl = os.path.join(os.getcwd(),"Inputs", sourceFileName)
     workspaceUrl = os.path.join(os.getcwd(),"Workspaces", workspaceFileName)
@@ -164,14 +170,14 @@ def preprocessTerms(contents):
             splitTerm = term.split("_")
             word, originalTag = splitTerm[0], splitTerm[1]
             # add in a check the tag should be valid
-            if validateTag(originalTag):
+            if validateTag(originalTag): # we only consider terms that have valid tags, as per this validator helper fn
                # separated words and tags into different arrays
                 words.append(word)
                 tags["original"].append(originalTag)
     tags["nltk"] = generateNLTKtags(words)
-    tags["spacy_sm"], tags["spacy_md"], tags["spacy_lg"] = generateSpacyTags(words)
+    # tags["spacy_sm"], tags["spacy_md"], tags["spacy_lg"] = generateSpacyTags(words)
     # ===============================================================================
-    return [words, tags]
+    return [words, tags] # returns a list consisting of 1: a list and 2: a dictionary
 
 
 
@@ -197,24 +203,30 @@ def autoTagWords(scores, words, currentTags, currentUncertainTagIndices):
 
 
 #TODO: replace the other output file shit.
+
+# We create a new docx file because it's complicated to modify the input docx file because of the internal structure
+# of docx. This isn't a problem because from a user perspective, the generated docx file looks exactly the same as the
+# input docx file
 def writeToDocx(scores, words, tagsDict):
     document = Document()
     p = document.add_paragraph("")
 
     for idx in range(len(words)):
+        # init some variables:
         score = scores[idx]
         currentTag = tagsDict["original"][idx]
         word = words[idx]
         term = word + "_" +  currentTag
 
-        if score == SINGLISH_SCORE: #-1
+        # highlight terms based on their meanings:
+        if score == SINGLISH_SCORE: # score of -1 had been assigned
             p.add_run(term).font.highlight_color = SINGLISH_HIGHLIGHT_COLOUR
-        elif score == PSEUDOSINGLISH_SCORE: #0
+        elif score == PSEUDOSINGLISH_SCORE: # score of 0 assigned
             p.add_run(term).font.highlight_color = PSEUDOSINGLISH_HIGHLIGHT_COLOUR
-        elif score > PSEUDOSINGLISH_SCORE and score < THRESHOLD:
+        elif score > PSEUDOSINGLISH_SCORE and score < THRESHOLD: # this didn't meet the min threshold
             p.add_run(term).font.highlight_color = UNCERTAIN_HIGHLIGHT_COLOUR
         else:
-            p.add_run(term)
+            p.add_run(term) # no issue in this
         p.add_run(" ")
     document.save(DESTINATION_FILE_PATH)
     return
@@ -225,16 +237,23 @@ def writeToDocx(scores, words, tagsDict):
 # correctly assigns the POS to each word, returns a valid list of lists: [words, tags] where both words and tags are a list
 def checkPOS(contents):
     words, tagsDict = preprocessTerms(contents)
-    assert (len(words) == len(tagsDict["original"]) == len(
-        tagsDict["nltk"]) == len(tagsDict["spacy_sm"])), "words and tag arrays are not the same length in checkPOS()"
-    originalTags, nltkTags, spacyTags_sm, spacyTags_md, spacyTags_ls = \
-        tagsDict["original"], tagsDict["nltk"], tagsDict["spacy_sm"], tagsDict["spacy_md"], tagsDict["spacy_lg"]
+    assert len(words) == len(tagsDict["original"]) == len(tagsDict["nltk"]), "words and tag arrays are not the same length in checkPOS()"
+    originalTags, nltkTags =  tagsDict["original"], tagsDict["nltk"]
     scores = calculateScores(words, tagsDict)
     logger.info(f"\n Scores have been calculated. \n {scores} ")
     writeToDocx(scores, words, tagsDict)
 
+    """ # code here uses multiple other libraries
+    assert (len(words) == len(tagsDict["original"]) == len(tagsDict["nltk"]) == len(tagsDict["spacy_sm"])), "words and tag arrays are not the same length in checkPOS()"
+    originalTags, nltkTags, spacyTags_sm, spacyTags_md, spacyTags_ls = \
+        tagsDict["original"], tagsDict["nltk"], tagsDict["spacy_sm"], tagsDict["spacy_md"], tagsDict["spacy_lg"]
+    scores = calculateScores(words, tagsDict)
+    logger.info(f"\n Scores have been calculated. \n {scores} ")
+    writeToDocx(scores, words, tagsDict) 
     """
-    # code here involves manually asking for human input for the terms that have undesirable level of discrepancy 
+
+
+    """ # code here involves manually asking for human input for the terms that have undesirable level of discrepancy 
     # amongst the various other nlp tokenizing models used (stanford, nltk...) 
         suspect_indices = detectDiscrepencies(scores, THRESHOLD)
         # indices ref to things with discrepancies:
@@ -316,15 +335,17 @@ def determineCorrectTag(term, referenceText):
 def calculateWeightedSum(tagsDict, idx):
     stanfordTag = tagsDict["original"][idx]
     nltkTag = tagsDict["nltk"][idx]
-    spacyTag_sm = tagsDict["spacy_sm"][idx]
-    spacyTag_md = tagsDict["spacy_md"][idx]
-    spacyTag_lg = tagsDict["spacy_lg"][idx]
-    c0 = 1 * (PublishedAccuracies["stanford"])
+    #spacyTag_sm = tagsDict["spacy_sm"][idx]
+    #spacyTag_md = tagsDict["spacy_md"][idx]
+    #spacyTag_lg = tagsDict["spacy_lg"][idx]
+
+    c0 = 1 * (PublishedAccuracies["stanford"])  # because the original tags were generated from stanford, it's guaranteed to be a match, this is equivalent to (1 if stanfordTag == stanfordTag else 0) * (PublishedAccuracies["stanford"])
     c1 = (1 if stanfordTag == nltkTag else 0) * (PublishedAccuracies["nltk"])
-    c2 = (1 if stanfordTag == spacyTag_sm else 0) * (PublishedAccuracies["spacy_sm"])
-    c3 = (1 if stanfordTag == spacyTag_md else 0) * (PublishedAccuracies["spacy_md"])
-    c4 = (1 if stanfordTag == spacyTag_lg else 0) * (PublishedAccuracies["spacy_lg"])
-    return c0 + c1 + c2 + c3 + c4
+    #c2 = (1 if stanfordTag == spacyTag_sm else 0) * (PublishedAccuracies["spacy_sm"])
+    #c3 = (1 if stanfordTag == spacyTag_md else 0) * (PublishedAccuracies["spacy_md"])
+    #c4 = (1 if stanfordTag == spacyTag_lg else 0) * (PublishedAccuracies["spacy_lg"])
+    #return c0 + c1 + c2 + c3 + c4
+    return c0 + c1
 
 
 # input: dictionary of generated Tags
