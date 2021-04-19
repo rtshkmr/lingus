@@ -60,22 +60,47 @@ PSEUDOSINGLISH_SCORE = 0
 SINGLISH_HIGHLIGHT_COLOUR = docx.enum.text.WD_COLOR.TURQUOISE
 PSEUDOSINGLISH_HIGHLIGHT_COLOUR = docx.enum.text.WD_COLOR.PINK
 UNCERTAIN_HIGHLIGHT_COLOUR = docx.enum.text.WD_COLOR.YELLOW
-DESTINATION_FILE_PATH = "./Outputs/highlight_testing.docx"
-
-
+DESTINATION_FOLDER = os.path.join(os.getcwd(), "Outputs")
+global DESTINATION_FILE_PATH
+INPUT_FOLDER = os.path.join(os.getcwd(), "Inputs")
 
 def main():
     logger.debug("\n\n\n>>>>>>>>>>>>>>>>>>>>>> Running Script Now <<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n\n")
-    # note that the input file has to be in the same project directory
-    sourceFileName = sys.argv[1]
-    desiredPercentage = float(sys.argv[2])
+    desiredPercentage = float(sys.argv[1])
     global THRESHOLD
+    global DESTINATION_FILE_PATH
+    global DESTINATION_FOLDER
     THRESHOLD = (desiredPercentage / 100.0) * NUM_MODELS_USED
-    fileTitle = sourceFileName.split(".")[0]
-    workspaceFileName = fileTitle + "_workspace.txt"
-    contents = init(sourceFileName, workspaceFileName)
-    #finalWords, finalTags, stats = checkPOS(contents)
-    checkPOS(contents)
+    filePaths = getInputFilepaths();
+
+    for filePath in filePaths:
+        sourceFileName = os.path.basename(filePath)
+        fileTitle = sourceFileName.split(".")[0]
+        workspaceFileName = fileTitle + "_workspace.txt"
+        outputFileName = fileTitle + ".docx"
+        DESTINATION_FILE_PATH = os.path.join(DESTINATION_FOLDER, outputFileName)
+        contents = init(sourceFileName, workspaceFileName)
+        try:
+            checkPOS(contents)
+        except Exception as e:
+            print(f" This file is fishy: {fileTitle} because: \n {e}")
+
+    '''
+        # note that the input file has to be in the same project directory
+       sourceFileName = sys.argv[1]
+       desiredPercentage = float(sys.argv[2])
+       global THRESHOLD
+       THRESHOLD = (desiredPercentage / 100.0) * NUM_MODELS_USED
+       fileTitle = sourceFileName.split(".")[0]
+       workspaceFileName = fileTitle + "_workspace.txt"
+       contents = init(sourceFileName, workspaceFileName)
+       #finalWords, finalTags, stats = checkPOS(contents)
+       checkPOS(contents)
+
+       '''
+
+
+
     """
     writeToOutputFile(fileTitle, finalWords, finalTags)
     print(endingGreeting + stats)
@@ -395,6 +420,16 @@ def writeToWorkspace(content, workspaceUrl):
     logger.debug(">>> wrote to Workspace")
     return content
 
+
+# Returns a list of filenames based on what input files are placed inside the /Inputs dir
+def getInputFilepaths():
+    inputLocation = os.path.join(os.getcwd(), "Inputs")
+    listOfFiles = os.listdir(inputLocation)
+    filenames =[]
+    for entry in listOfFiles:
+        fullPath = os.path.join(inputLocation, entry)
+        filenames.append(fullPath)
+    return filenames
 
 # appends to non-existing / pre-existing output file
 def writeToOutputFile(fileTitle, words, tags):
