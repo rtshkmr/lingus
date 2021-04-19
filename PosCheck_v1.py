@@ -131,7 +131,9 @@ def getSourceContent(sourceUrl):
         return docx2txt.process(sourceUrl)
     elif (".txt" in sourceUrl):
         # TODO: the contractions have an extra backslash, check if this affects anything or can it be ignored.
-        #       because in thefirst place we are ignoring contractions.
+        #       because in thefirst place we are ignoring contractions. This is suspected to be the reason why
+        #       our assertions in other areas fail (this is the suspected bug) and can be avoided if we get
+        #       the original files that have not been preprocessed by stanford.
         fo = open(sourceUrl, "r")
         content = fo.read().replace("\n", " ").replace("\'", " ")
         return content
